@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="admin-shell">
+  <div class="admin-card admin-login-card">
+    <span class="eyebrow">Private area</span>
+    <h1>Ricevibe admin</h1>
+    <p>Sign in to manage gallery, media and banner uploads.</p>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}<p class="admin-message {{ category }}">{{ message }}</p>{% endfor %}
+    {% endwith %}
+    <form method="post" class="admin-form">
+      <label for="password">Admin password</label>
+      <input id="password" name="password" type="password" required autocomplete="current-password" />
+      <button class="btn primary" type="submit">Sign in</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="section product-detail-section">
+  <div class="container product-detail-grid">
+    <div class="product-gallery">
+      {% for image in product.gallery %}
+      <img src="{{ image }}" alt="{{ product.name }}" class="gallery-thumb" loading="lazy" />
+      {% endfor %}
+    </div>
+    <div class="product-info">
+      <span class="eyebrow">{{ product.category }}</span>
+      <h1>{{ product.name }}</h1>
+      <p class="product-price">{% if product.price %}₹{{ product.price }}{% else %}Request a quote{% endif %}</p>
+      <p>{{ product.description }}</p>
+      <div class="purchase-row">
+        <a class="btn primary" href="/contact?product={{ product.name | urlencode }}">Send enquiry <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="meta-row">
+        <span>Pack: {{ product.pack }}</span>
+        <span>Stock: {{ product.stock }}</span>
+      </div>
+      <div class="secondary-actions">
+        <a class="btn secondary" href="https://wa.me/919342328664?text={{ ('I am interested in a Ricevibe product enquiry for ' ~ product.name) | urlencode }}" target="_blank" rel="noreferrer">WhatsApp enquiry</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt-bg">
+  <div class="container info-grid">
+    <div>
+      <h2>Specifications</h2>
+      <ul class="spec-list">
+        {% for item in product.specs %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div>
+      <h2>Usage</h2>
+      <p>{{ product.usage }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-heading space-between">
+      <div>
+        <span class="eyebrow">Related products</span>
+        <h2>You may also like</h2>
+      </div>
+    </div>
+    <div class="product-grid compact-grid">
+      {% for item in related %}
+      <article class="product-card">
+        <div class="product-image-wrap">
+          <a href="/shop/{{ item.slug }}"><img src="{{ item.image }}" alt="{{ item.name }}" loading="lazy" /></a>
+        </div>
+        <div class="card-copy">
+          <h3><a href="/shop/{{ item.slug }}">{{ item.name }}</a></h3>
+          <p>{{ item.pack }}</p>
+          <div class="price-row">
+              <strong>{% if item.price %}₹{{ item.price }}{% else %}Enquire{% endif %}</strong>
+              <a class="btn enquiry-button" href="/contact?product={{ item.name | urlencode }}">Enquire now</a>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

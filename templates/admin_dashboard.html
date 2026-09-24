@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="admin-shell">
+  <div class="admin-header">
+    <div>
+      <span class="eyebrow">Content manager</span>
+      <h1>Ricevibe admin portal</h1>
+      <p>Manage the images that appear across the live Ricevibe website.</p>
+    </div>
+    <a class="btn secondary" href="/admin/logout">Sign out</a>
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}<p class="admin-message {{ category }}">{{ message }}</p>{% endfor %}
+  {% endwith %}
+
+  <div class="admin-layout">
+    <form class="admin-card admin-form" method="post" action="/admin/upload" enctype="multipart/form-data">
+      <h2>Upload website media</h2>
+      <p class="admin-help">Choose where the files belong. Gallery uploads can include many images at once and will keep the selected category.</p>
+      <label for="title">Image title</label>
+      <input id="title" name="title" type="text" placeholder="Product or campaign title" required />
+      <label for="type">Where should these files appear?</label>
+      <select id="type" name="type">
+        <option value="Gallery">Gallery — multiple category images</option>
+        <option value="Media">Media — press/articles</option>
+        <option value="Homepage banner">Homepage banner — carousel slide</option>
+        <option value="Product image">Shop — product image</option>
+      </select>
+      <label for="category">Gallery category <small>used for Gallery and homepage previews</small></label>
+      <select id="category" name="category">
+        <option>Garnish Sticks</option>
+        <option>Ricevibe Products</option>
+        <option>Rice Straw 8mm</option>
+      </select>
+      <label for="product_slug">Shop product assignment <small>only for Shop — product image</small></label>
+      <select id="product_slug" name="product_slug">
+        <option value="">Do not assign</option>
+        {% for product in admin_site.products %}<option value="{{ product.slug }}">{{ product.name }}</option>{% endfor %}
+      </select>
+      <label for="image">Choose files from your device</label>
+      <input id="image" name="image" type="file" accept="image/png,image/jpeg,image/webp,image/gif" multiple required />
+      <button class="btn primary" type="submit">Upload selected files</button>
+      <small>Gallery supports multiple files. PNG, JPG, JPEG, WEBP or GIF. Maximum 8 MB per file.</small>
+    </form>
+
+    <div class="admin-card">
+      <h2>Uploaded media library</h2>
+      <div class="admin-stats">
+        <span><strong>{{ admin_uploads|length }}</strong> uploads</span>
+        <span><strong>{{ admin_site.products|length }}</strong> products</span>
+        <span><strong>{{ admin_site.gallery|length }}</strong> gallery items</span>
+      </div>
+      {% if admin_uploads %}
+      <div class="admin-upload-grid">
+        {% for item in admin_uploads %}
+        <article class="admin-upload-item">
+          <img src="{{ item.image }}" alt="{{ item.title }}" />
+          <div><strong>{{ item.title }}</strong><span>{{ item.type }}{% if item.category %} · {{ item.category }}{% endif %}</span></div>
+          <form method="post" action="/admin/delete/{{ item.filename }}"><button class="text-button" type="submit">Delete</button></form>
+        </article>
+        {% endfor %}
+      </div>
+      {% else %}<p class="muted-copy">No uploads yet.</p>{% endif %}
+    </div>
+  </div>
+
+  <section class="admin-content-editor">
+    <div class="admin-section-heading"><div><span class="eyebrow">Content control</span><h2>Manage website sections</h2><p>Use each section below to add, edit, or delete individual content records.</p></div></div>
+    <form class="admin-settings-panel" method="post" action="/admin/settings/save">
+      <div class="admin-panel-bar"><h2>Site Settings</h2><span>Brand and contact details</span></div>
+      <div class="admin-settings-grid">
+        {% for key in ['name', 'tagline', 'phone', 'email', 'address', 'whatsapp'] %}
+        <label>{{ key|title }}<input name="{{ key }}" value="{{ admin_site.brand.get(key, '') }}" /></label>
+        {% endfor %}
+        {% for key in ['instagram', 'facebook', 'whatsapp'] %}
+        <label>{{ key|title }} link<input name="{{ key }}" value="{{ admin_site.social.get(key, '') }}" placeholder="https://" /></label>
+        {% endfor %}
+      </div>
+      <button class="admin-save-button" type="submit">Save Settings</button>
+    </form>
+    {% for section in ['hero', 'categories', 'products', 'testimonials', 'faq', 'media', 'gallery', 'certificates'] %}
+    <article class="admin-section-panel">
+      <div class="admin-panel-bar"><h2>{% if section == 'products' %}Shop Products{% elif section == 'hero' %}Homepage Banners{% else %}{{ section|title }}{% endif %}</h2><span>{{ admin_site[section]|length }} items</span><button class="admin-add-toggle" type="button" data-target="add-{{ section }}">+ Add item</button></div>
+      <form id="add-{{ section }}" class="admin-item-form admin-add-form" method="post" action="/admin/content/item" enctype="multipart/form-data" hidden>
+        <input type="hidden" name="section" value="{{ section }}" /><input type="hidden" name="action" value="add" />
+        {% if section == 'hero' %}<input name="title" placeholder="Banner title" required /><label class="admin-file-label">Choose banner from device<input name="image_file" type="file" accept="image/png,image/jpeg,image/webp,image/gif" /></label><input name="image" placeholder="Or image URL" /><input name="subtitle" placeholder="Subtitle" />
+        {% elif section == 'categories' %}<input name="slug" placeholder="Slug" required /><input name="name" placeholder="Category name" required /><label class="admin-file-label">Choose category image<input name="image_file" type="file" accept="image/png,image/jpeg,image/webp,image/gif" /></label><input name="image" placeholder="Or image URL" /><textarea name="description" placeholder="Description"></textarea>
+        {% elif section == 'products' %}<input name="slug" placeholder="Slug" required /><input name="name" placeholder="Product name" required /><input name="category" placeholder="Category" /><input name="category_slug" placeholder="Category slug" /><input name="pack" placeholder="Pack" /><input name="price" placeholder="Price" type="number" /><label class="admin-file-label">Choose product image<input name="image_file" type="file" accept="image/png,image/jpeg,image/webp,image/gif" /></label><input name="image" placeholder="Or image URL" /><textarea name="description" placeholder="Description"></textarea>
+        {% elif section == 'testimonials' %}<textarea name="quote" placeholder="Client feedback" required></textarea><input name="name" placeholder="Client name" /><input name="role" placeholder="Location or role" />
+        {% elif section == 'faq' %}<input name="question" placeholder="Question" required /><textarea name="answer" placeholder="Answer" required></textarea>
+        {% elif section == 'media' %}<input name="title" placeholder="Title" required /><input name="source" placeholder="Source" /><input name="date" placeholder="Date" /><label class="admin-file-label">Choose media image<input name="image_file" type="file" accept="image/png,image/jpeg,image/webp,image/gif" /></label><input name="image" placeholder="Or image URL" /><textarea name="excerpt" placeholder="Excerpt"></textarea>
+        {% elif section == 'gallery' %}<input name="title" placeholder="Title" required /><input name="category" placeholder="Category" /><label class="admin-file-label">Choose gallery image<input name="image_file" type="file" accept="image/png,image/jpeg,image/webp,image/gif" /></label><input name="image" placeholder="Or image URL" required />
+        {% elif section == 'certificates' %}<input name="name" placeholder="Certificate name" required /><input name="issuer" placeholder="Issuer" /><input name="validity" placeholder="Validity" /><label class="admin-file-label">Choose certificate file/image<input name="image_file" type="file" accept="image/png,image/jpeg,image/webp,image/gif,.pdf" /></label><input name="thumb" placeholder="Thumbnail URL" /><input name="file" placeholder="File URL" />{% endif %}
+        <button class="admin-save-button" type="submit">Save new item</button>
+      </form>
+      <div class="admin-item-list">
+        {% for item in admin_site[section] %}
+        <details class="admin-item-row"><summary><span>{{ item.name or item.title or item.question or 'Item ' ~ loop.index }}</span><small>Change</small></summary>
+          <form class="admin-item-form" method="post" action="/admin/content/item" enctype="multipart/form-data"><input type="hidden" name="section" value="{{ section }}" /><input type="hidden" name="index" value="{{ loop.index0 }}" /><input type="hidden" name="action" value="edit" />
+            {% if section == 'hero' %}<input name="title" value="{{ item.title|default('') }}" placeholder="Banner title" /><label class="admin-file-label">Replace banner from device<input name="image_file" type="file" accept="image/png,image/jpeg,image/webp,image/gif" /></label><input name="image" value="{{ item.image|default('') }}" placeholder="Or image URL" /><input name="subtitle" value="{{ item.subtitle|default('') }}" placeholder="Subtitle" />
+            {% elif section == 'categories' %}<input name="slug" value="{{ item.slug|default('') }}" placeholder="Slug" /><input name="name" value="{{ item.name|default('') }}" placeholder="Name" /><label class="admin-file-label">Replace category image<input name="image_file" type="file" accept="image/png,image/jpeg,image/webp,image/gif" /></label><input name="image" value="{{ item.image|default('') }}" placeholder="Or image URL" /><textarea name="description" placeholder="Description">{{ item.description|default('') }}</textarea>
+            {% elif section == 'products' %}<input name="slug" value="{{ item.slug|default('') }}" placeholder="Slug" /><input name="name" value="{{ item.name|default('') }}" placeholder="Name" /><input name="category" value="{{ item.category|default('') }}" placeholder="Category" /><input name="category_slug" value="{{ item.category_slug|default('') }}" placeholder="Category slug" /><input name="pack" value="{{ item.pack|default('') }}" placeholder="Pack" /><input name="price" value="{{ item.price|default('') }}" placeholder="Price" type="number" /><label class="admin-file-label">Replace product image<input name="image_file" type="file" accept="image/png,image/jpeg,image/webp,image/gif" /></label><input name="image" value="{{ item.image|default('') }}" placeholder="Or image URL" /><textarea name="description" placeholder="Description">{{ item.description|default('') }}</textarea>
+            {% elif section == 'testimonials' %}<textarea name="quote">{{ item.quote|default('') }}</textarea><input name="name" value="{{ item.name|default('') }}" placeholder="Name" /><input name="role" value="{{ item.role|default('') }}" placeholder="Role" />
+            {% elif section == 'faq' %}<input name="question" value="{{ item.question|default('') }}" placeholder="Question" /><textarea name="answer">{{ item.answer|default('') }}</textarea>
+            {% elif section == 'media' %}<input name="title" value="{{ item.title|default('') }}" placeholder="Title" /><input name="source" value="{{ item.source|default('') }}" placeholder="Source" /><input name="date" value="{{ item.date|default('') }}" placeholder="Date" /><label class="admin-file-label">Replace media image<input name="image_file" type="file" accept="image/png,image/jpeg,image/webp,image/gif" /></label><input name="image" value="{{ item.image|default('') }}" placeholder="Or image URL" /><textarea name="excerpt">{{ item.excerpt|default('') }}</textarea>
+            {% elif section == 'gallery' %}<input name="title" value="{{ item.title|default('') }}" placeholder="Title" /><input name="category" value="{{ item.category|default('') }}" placeholder="Category" /><label class="admin-file-label">Replace gallery image<input name="image_file" type="file" accept="image/png,image/jpeg,image/webp,image/gif" /></label><input name="image" value="{{ item.image|default('') }}" placeholder="Or image URL" />
+            {% elif section == 'certificates' %}<input name="name" value="{{ item.name|default('') }}" placeholder="Name" /><input name="issuer" value="{{ item.issuer|default('') }}" placeholder="Issuer" /><input name="validity" value="{{ item.validity|default('') }}" placeholder="Validity" /><label class="admin-file-label">Replace certificate file/image<input name="image_file" type="file" accept="image/png,image/jpeg,image/webp,image/gif,.pdf" /></label><input name="thumb" value="{{ item.thumb|default('') }}" placeholder="Thumbnail URL" /><input name="file" value="{{ item.file|default('') }}" placeholder="File URL" />{% endif %}
+            <div class="admin-form-actions"><button class="admin-save-button" type="submit">Save changes</button><button class="admin-delete-button" formaction="/admin/content/delete/{{ section }}/{{ loop.index0 }}" formmethod="post" type="submit">Delete</button></div>
+          </form>
+        </details>
+        {% endfor %}
+      </div>
+    </article>
+    {% endfor %}
+  </section>
+</section>
+{% endblock %}

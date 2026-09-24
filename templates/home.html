@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="hero-section">
+  <div class="hero-carousel" data-carousel>
+    {% if not site.hero %}<div class="hero-empty">Homepage banners can be added from the admin panel.</div>{% endif %}
+    {% for slide in site.hero %}
+    <article class="hero-slide {% if loop.first %}active{% endif %}">
+      <img src="{{ slide.image }}" alt="{{ slide.title }}" {% if not loop.first %}loading="lazy"{% endif %} />
+    </article>
+    {% endfor %}
+    <div class="hero-dots" aria-label="Banner navigation">
+      {% for slide in site.hero %}<button class="dot {% if loop.first %}active{% endif %}" type="button" aria-label="Show banner {{ loop.index }}"></button>{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="proof-strip" aria-label="Ricevibe highlights">
+  <div class="container proof-grid">
+    <div><strong>01</strong><span>Natural materials</span></div>
+    <div><strong>02</strong><span>Chennai-based supply</span></div>
+    <div><strong>03</strong><span>Retail and bulk orders</span></div>
+    <div><strong>04</strong><span>Made for better sipping</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-heading center">
+      <span class="eyebrow">Browse categories</span>
+      <h2>{{ site.homepage.categories_heading }}</h2>
+    </div>
+    <div class="category-grid reveal-on-scroll">
+      {% for category in site.categories %}
+      <article class="category-card">
+        <img src="{{ category.image }}" alt="{{ category.name }}" loading="lazy" />
+        <div class="card-copy">
+          <h3>{{ category.name }}</h3>
+          <p>{{ category.description }}</p>
+          <a href="/shop?category={{ category.slug }}">Explore <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-heading space-between">
+      <div><span class="eyebrow">Featured range</span><h2>{{ site.homepage.products_heading }}</h2></div>
+      <a href="/shop" class="text-link">View all products →</a>
+    </div>
+    <div class="product-grid reveal-on-scroll">
+      {% for product in site.products[:4] %}
+      <article class="product-card">
+        <div class="product-image-wrap"><a href="/shop/{{ product.slug }}"><img src="{{ product.image }}" alt="{{ product.name }}" loading="lazy" /></a>{% if product.badge %}<span class="badge">{{ product.badge }}</span>{% endif %}</div>
+          <div class="card-copy"><h3><a href="/shop/{{ product.slug }}">{{ product.name }}</a></h3><p>{{ product.pack }}</p><div class="price-row"><strong>{% if product.price %}₹{{ product.price }}{% else %}Enquire{% endif %}</strong><a class="btn enquiry-button" href="/contact?product={{ product.name | urlencode }}">Enquire now</a></div></div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section alt-bg">
+  <div class="container">
+    <div class="section-heading center">
+      <span class="eyebrow">Why Ricevibe</span>
+      <h2>{{ site.homepage.why_heading }}</h2>
+    </div>
+    <div class="feature-grid">
+      {% for item in site.why_ricevibe %}
+      <article class="feature-card">
+        <div class="feature-icon icon-{{ item.icon }}" aria-hidden="true"></div>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.text }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section sustainability-section">
+  <div class="container sustainability-grid">
+    <div><span class="eyebrow">Sustainability</span><h2>{{ site.homepage.sustainability_heading }}</h2><p>Thoughtful materials and responsible product choices for the businesses shaping a cleaner everyday.</p><ul class="check-list"><li>Natural, food-friendly materials</li><li>Suitable for hospitality and retail</li><li>Designed for premium presentation</li></ul></div>
+    <div class="sustainability-image"><img src="/static/assets/ricevibe/rice-straw-main.jpg" alt="Natural Ricevibe rice straws" loading="lazy" /></div>
+  </div>
+</section>
+
+<section class="cta-strip bulk-orders">
+  <div class="container cta-strip-inner"><div><span class="eyebrow">Bulk supply</span><h2>{{ site.homepage.bulk_heading }}</h2><p>Hotels · Restaurants · Cafes · Catering · Retail · Distributors</p></div><div class="cta-actions"><a class="btn primary" href="/contact">Enquire Now</a><a class="btn secondary" href="{{ site.brand.whatsapp }}" target="_blank" rel="noreferrer">WhatsApp</a></div></div>
+</section>
+
+<section class="section gallery-preview">
+  <div class="container gallery-browser" data-gallery-browser><div class="section-heading space-between"><div><span class="eyebrow">Gallery</span><h2>Made to be seen in every detail</h2></div><a href="/gallery" class="text-link">View Gallery →</a></div><div class="gallery-filters" role="tablist" aria-label="Gallery categories"><button class="gallery-filter active" type="button" data-gallery-filter="all">All</button><button class="gallery-filter" type="button" data-gallery-filter="Garnish Sticks">Garnish Sticks</button><button class="gallery-filter" type="button" data-gallery-filter="Ricevibe Products">Ricevibe Products</button><button class="gallery-filter" type="button" data-gallery-filter="Rice Straw 8mm">Rice Straw 8mm</button></div><div class="gallery-preview-grid">{% for item in site.gallery %}<a href="/gallery" class="gallery-preview-item" data-gallery-category="{{ item.category }}"><img src="{{ item.image }}" alt="{{ item.title }}" loading="lazy" /></a>{% endfor %}</div></div>
+</section>
+
+<section class="section testimonial-section" aria-labelledby="client-feedback-title">
+  <div class="container">
+    <div class="section-heading space-between">
+      <div>
+        <span class="eyebrow">Client feedback</span>
+        <h2 id="client-feedback-title">{{ site.homepage.feedback_heading }}</h2>
+      </div>
+      <div class="carousel-controls" aria-label="Client feedback controls">
+        <button class="carousel-button testimonial-prev" type="button" aria-label="Previous feedback">←</button>
+        <button class="carousel-button testimonial-next" type="button" aria-label="Next feedback">→</button>
+      </div>
+    </div>
+    <div class="testimonial-carousel">
+      {% for item in site.testimonials %}
+      <article class="testimonial-card {% if loop.first %}active{% endif %}">
+        <div class="quote-mark" aria-hidden="true">“</div>
+        <p>{{ item.quote }}</p>
+        <footer><strong>{{ item.name }}</strong><span>{{ item.role }}</span></footer>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

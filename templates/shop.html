@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero compact">
+  <div class="container">
+    <span class="eyebrow">Shop</span>
+    <h1>Eco-friendly beverage essentials</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container shop-layout">
+    <aside class="shop-filters">
+      <h2>Filter by category</h2>
+      <div class="filter-list">
+        <a href="/shop" class="filter-pill {% if category == 'all' %}active{% endif %}">All products</a>
+        {% for item in site.categories %}
+        <a href="/shop?category={{ item.slug }}" class="filter-pill {% if category == item.slug %}active{% endif %}">{{ item.name }}</a>
+        {% endfor %}
+      </div>
+
+      <form class="filter-form" method="get" action="/shop">
+        <label for="shop-search">Search</label>
+        <input id="shop-search" type="search" name="q" value="{{ search }}" placeholder="Search products" />
+        <label for="shop-sort">Sort by</label>
+        <select id="shop-sort" name="sort">
+          <option value="featured" {% if sort == 'featured' %}selected{% endif %}>Featured</option>
+          <option value="low-to-high" {% if sort == 'low-to-high' %}selected{% endif %}>Price: Low to High</option>
+          <option value="high-to-low" {% if sort == 'high-to-low' %}selected{% endif %}>Price: High to Low</option>
+          <option value="name" {% if sort == 'name' %}selected{% endif %}>Name</option>
+        </select>
+        {% if category != 'all' %}<input type="hidden" name="category" value="{{ category }}" />{% endif %}
+        <button class="btn primary" type="submit">Apply</button>
+      </form>
+    </aside>
+
+    <div class="shop-products">
+      {% if products %}
+      <div class="product-grid compact-grid">
+        {% for product in products %}
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <a href="/shop/{{ product.slug }}"><img src="{{ product.image }}" alt="{{ product.name }}" loading="lazy" /></a>
+            {% if product.badge %}<span class="badge">{{ product.badge }}</span>{% endif %}
+          </div>
+          <div class="card-copy">
+            <h3><a href="/shop/{{ product.slug }}">{{ product.name }}</a></h3>
+            <p>{{ product.pack }}</p>
+            <div class="price-row">
+              <strong>{% if product.price %}₹{{ product.price }}{% else %}Enquire{% endif %}</strong>
+              <a class="btn enquiry-button" href="/contact?product={{ product.name | urlencode }}">Enquire now</a>
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="empty-state">
+        <h2>No products found</h2>
+        <p>Try another search or view the full collection.</p>
+        <a class="btn primary" href="/shop">Reset filters</a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ page_title or site.brand.name }}</title>
+    <meta name="description" content="{{ meta_description or site.brand.tagline }}" />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="{{ canonical_url(canonical_path or '/') }}" />
+    <meta property="og:title" content="{{ page_title or site.brand.name }}" />
+    <meta property="og:description" content="{{ meta_description or site.brand.tagline }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ canonical_url(canonical_path or '/') }}" />
+    <meta property="og:image" content="{{ site.brand.logo_url if site.brand.logo_url else '/static/assets/logo-ricevibe.svg' }}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" href="/static/assets/ricevibe/logo-final.png" />
+    <link rel="stylesheet" href="/static/css/style.css?v=gold-strawberry-theme-19" />
+    <style>.main-nav a[href="/certificates"], .site-footer a[href="/certificates"] { display: none !important; }</style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Ricevibe",
+        "url": "https://ricevibe.in",
+        "logo": "https://ricevibe.in/static/assets/logo-ricevibe.svg",
+        "telephone": "+91 93423 28664",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Chennai",
+          "addressRegion": "Tamil Nadu",
+          "addressCountry": "IN"
+        },
+        "sameAs": [
+          "https://wa.me/919342328664"
+        ]
+      }
+    </script>
+    {% if page_type == 'product' %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "{{ product.name }}",
+        "description": "{{ product.description }}",
+        "image": [
+          {% for img in product.gallery %}
+            "{{ img }}"{% if not loop.last %},{% endif %}
+          {% endfor %}
+        ],
+        "brand": {"@type":"Brand","name":"Ricevibe"},
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "INR",
+          "price": "{{ product.price }}",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    </script>
+    {% endif %}
+    {% if page_type == 'faq' %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {% for item in site.faq %}
+          {
+            "@type": "Question",
+            "name": "{{ item.question }}",
+            "acceptedAnswer": {"@type": "Answer","text": "{{ item.answer }}"}
+          }{% if not loop.last %},{% endif %}
+          {% endfor %}
+        ]
+      }
+    </script>
+    {% endif %}
+  </head>
+  <body class="{% if request.path.startswith('/admin') %}admin-page{% endif %}">
+    <header class="site-header">
+      <div class="container header-inner">
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation"><span></span><span></span><span></span></button>
+        <a href="/" class="brand" aria-label="Ricevibe home">
+          <img src="/static/assets/ricevibe/logo-cropped.png" alt="Ricevibe - Bio-degradable rice straws" />
+        </a>
+        <nav id="main-navigation" class="main-nav" aria-label="Main navigation">
+          <button class="nav-close" type="button" aria-label="Close navigation">×</button>
+          <ul>
+            {% for item in site.nav %}
+            {% if item.label|lower != 'certificates' %}<li><a href="{{ item.url }}" {% if request.path == item.url %}class="active"{% endif %}>{{ item.label }}</a></li>{% endif %}
+            {% endfor %}
+          </ul>
+        </nav>
+        <button class="menu-backdrop" type="button" aria-label="Close navigation"></button>
+        <div class="header-tools">
+          <form class="header-search" action="/shop" method="get">
+            <label class="sr-only" for="site-search">Search products</label>
+            <input id="site-search" type="search" name="q" placeholder="Search" />
+          </form>
+          <a href="/contact" class="cart-link enquiry-link" aria-label="Send an enquiry">
+            <svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 5h16v12H7l-3 3V5Z"/><path d="M8 9h8M8 13h5"/></svg><span>Enquire</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <h3>About</h3>
+          <p>Ricevibe offers eco-friendly, food-grade rice straws, wooden stirrers and garnish sticks for hospitality and retail.</p>
+        </div>
+        <div>
+          <h3>Quick links</h3>
+          <ul>
+            <li><a href="/shop">Shop</a></li>
+            <li><a href="/media">Media</a></li>
+            <li><a href="/gallery">Gallery</a></li>
+            <li><a href="/brochure">Brochure</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Support</h3>
+          <ul>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/privacy-policy">Privacy</a></li>
+            <li><a href="/terms-and-conditions">Terms</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <p><a href="tel:+919342328664">{{ site.brand.phone }}</a></p>
+          <p>{{ site.brand.address }}</p>
+          <div class="social-row">
+            <a href="{{ site.social.instagram }}" aria-label="Instagram" title="Instagram"><svg class="social-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" class="fill-dot"/></svg></a>
+            <a href="{{ site.social.facebook }}" aria-label="Facebook" title="Facebook"><svg class="social-icon" viewBox="0 0 24 24"><path d="M14 21v-8h3l.5-3H14V8.2c0-.9.3-1.5 1.6-1.5H18V4.1c-.4-.1-1.3-.2-2.5-.2-2.5 0-4.2 1.5-4.2 4.2V10H8.5v3H11v8"/></svg></a>
+            <a href="{{ site.social.whatsapp }}" aria-label="WhatsApp" title="WhatsApp"><svg class="social-icon" viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5Z"/><path d="M9 8.5c.2 2.3 2 4.3 4.3 4.8l1.2-1.2 1.8.8c-.2 1.3-1.2 1.9-2.3 1.7-3.7-.7-6.3-3.3-7-7-.2-1.1.5-2.1 1.7-2.3l.8 1.8L9 8.5Z"/></svg></a>
+            <a href="tel:+919342328664" aria-label="Phone" title="Call Ricevibe"><svg class="social-icon" viewBox="0 0 24 24"><path d="M7 3h3l1.2 4-2 1.5a14 14 0 0 0 6.3 6.3l1.5-2 4 1.2v3c0 1.1-.9 2-2 2C11.3 19 5 12.7 5 5a2 2 0 0 1 2-2Z"/></svg></a>
+            <a href="mailto:{{ site.brand.email }}" aria-label="Email" title="Email Ricevibe"><svg class="social-icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>© {{ current_year }} Ricevibe by JP Enterprises.</p>
+        <div class="policy-links">
+          <a href="/privacy-policy">Privacy</a>
+          <a href="/terms-and-conditions">Terms</a>
+          <a href="/shipping-policy">Shipping</a>
+          <a href="/returns-policy">Return/Refund</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="contact-float" aria-label="Quick contact options">
+      <a class="whatsapp-float" href="{{ site.brand.whatsapp }}?text=Hello%20Ricevibe%2C%20I%20would%20like%20a%20product%20enquiry." target="_blank" rel="noreferrer" aria-label="WhatsApp enquiry" title="WhatsApp enquiry">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5Z"/><path d="M9 8.5c.2 2.3 2 4.3 4.3 4.8l1.2-1.2 1.8.8c-.2 1.3-1.2 1.9-2.3 1.7-3.7-.7-6.3-3.3-7-7-.2-1.1.5-2.1 1.7-2.3l.8 1.8L9 8.5Z"/></svg>
+      </a>
+      <button class="chat-float" type="button" aria-label="Open Ricevibe chat" aria-expanded="false" title="Chat with Ricevibe">?</button>
+      <div class="chat-panel" hidden>
+        <strong>Ricevibe support</strong>
+        <p>Hi. What can we help you with?</p>
+        <a href="/contact">Product enquiry</a>
+        <a href="{{ site.brand.whatsapp }}" target="_blank" rel="noreferrer">Chat on WhatsApp</a>
+      </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+  </body>
+</html>
