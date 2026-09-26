@@ -15,6 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
       if (form) form.hidden = !form.hidden;
     });
   });
+  const productSearch = document.querySelector('#admin-product-search');
+  const productCategory = document.querySelector('#admin-product-category');
+  const filterAdminProducts = () => {
+    const query = productSearch?.value.toLowerCase() || '';
+    const category = productCategory?.value || 'all';
+    document.querySelectorAll('[data-product-row]').forEach((row) => {
+      row.hidden = (query && !row.dataset.name.includes(query)) || (category !== 'all' && row.dataset.category !== category);
+    });
+  };
+  productSearch?.addEventListener('input', filterAdminProducts);
+  productCategory?.addEventListener('change', filterAdminProducts);
 
   const menuToggle = document.querySelector('.menu-toggle');
   const mainNav = document.querySelector('.main-nav');

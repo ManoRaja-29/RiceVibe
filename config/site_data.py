@@ -14,7 +14,6 @@ SITE_DATA = {
         {"label": "Home", "url": "/"},
         {"label": "Shop", "url": "/shop"},
         {"label": "About Us", "url": "/about-us"},
-        {"label": "Media", "url": "/media"},
         {"label": "Gallery", "url": "/gallery"},
         {"label": "Brochure", "url": "/brochure"},
         {"label": "FAQ", "url": "/faq"},
@@ -56,6 +55,10 @@ SITE_DATA = {
         {"title": "Natural", "text": "Clean, earthy and premium look that aligns with natural ingredient experiences.", "icon": "sun"},
         {"title": "Hospitality ready", "text": "Built for cafés, restaurants, bars, and event service setups requiring consistency.", "icon": "cup"},
         {"title": "Bulk supply", "text": "Reliable formats for hotels, restaurants, caterers, retailers and distributors.", "icon": "box"},
+        {"title": "Plant-based", "text": "Made with plant-derived ingredients for a more natural everyday alternative.", "icon": "leaf"},
+        {"title": "Plastic-free choice", "text": "A practical way to reduce dependence on conventional single-use plastic straws.", "icon": "spark"},
+        {"title": "Earth-conscious", "text": "A thoughtful product choice for teams working toward cleaner, lower-impact service.", "icon": "sun"},
+        {"title": "Naturally stylish", "text": "Warm natural textures and a premium finish that complement modern beverage presentation.", "icon": "cup"},
     ],
     "products": [
         {

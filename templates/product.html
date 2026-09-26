@@ -11,17 +11,16 @@
     <div class="product-info">
       <span class="eyebrow">{{ product.category }}</span>
       <h1>{{ product.name }}</h1>
-      <p class="product-price">{% if product.price %}₹{{ product.price }}{% else %}Request a quote{% endif %}</p>
+      <p class="product-price">Product enquiry</p>
       <p>{{ product.description }}</p>
-      <div class="purchase-row">
-        <a class="btn primary" href="/contact?product={{ product.name | urlencode }}">Send enquiry <span aria-hidden="true">→</span></a>
-      </div>
+      <a class="btn primary enquiry-whatsapp" href="{{ site.brand.whatsapp }}?text={{ ('Hi Ricevibe, I am interested in ' ~ product.name ~ '. Please share price, quantity options and more details.') | urlencode }}" target="_blank" rel="noreferrer">Enquire now on WhatsApp <span aria-hidden="true">→</span></a>
       <div class="meta-row">
         <span>Pack: {{ product.pack }}</span>
         <span>Stock: {{ product.stock }}</span>
       </div>
+      <div class="product-detail-copy"><h3>Available sizes and variants</h3><p>{{ product.pack }}</p><h3>Features and specifications</h3><ul class="spec-list">{% for item in product.specs %}<li>{{ item }}</li>{% endfor %}</ul><h3>Packaging and use</h3><p>{{ product.usage }}</p></div>
       <div class="secondary-actions">
-        <a class="btn secondary" href="https://wa.me/919342328664?text={{ ('I am interested in a Ricevibe product enquiry for ' ~ product.name) | urlencode }}" target="_blank" rel="noreferrer">WhatsApp enquiry</a>
+        <span class="product-certification">Certification information available on request.</span>
       </div>
     </div>
   </div>

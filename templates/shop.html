@@ -3,8 +3,9 @@
 {% block content %}
 <section class="page-hero compact">
   <div class="container">
-    <span class="eyebrow">Shop</span>
-    <h1>Eco-friendly beverage essentials</h1>
+    <span class="eyebrow">Ricevibe catalogue</span>
+    <h1>Natural products for better service</h1>
+    <p>Explore our products and send a direct enquiry for pricing, quantity options and availability.</p>
   </div>
 </section>
 
@@ -45,11 +46,9 @@
           </div>
           <div class="card-copy">
             <h3><a href="/shop/{{ product.slug }}">{{ product.name }}</a></h3>
-            <p>{{ product.pack }}</p>
-            <div class="price-row">
-              <strong>{% if product.price %}₹{{ product.price }}{% else %}Enquire{% endif %}</strong>
-              <a class="btn enquiry-button" href="/contact?product={{ product.name | urlencode }}">Enquire now</a>
-            </div>
+            <p class="product-short-description">{{ product.description }}</p>
+            <div class="product-detail-points"><span>{{ product.pack }}</span><span>{{ product.specs[0] if product.specs else 'Natural material' }}</span><span>{{ product.specs[1] if product.specs|length > 1 else 'Hospitality ready' }}</span></div>
+            <a class="btn enquiry-button enquiry-whatsapp" href="{{ site.brand.whatsapp }}?text={{ ('Hi Ricevibe, I am interested in ' ~ product.name ~ '. Please share price, quantity options and more details.') | urlencode }}" target="_blank" rel="noreferrer">Enquire now <span aria-hidden="true">→</span></a>
           </div>
         </article>
         {% endfor %}

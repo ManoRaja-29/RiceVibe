@@ -429,8 +429,9 @@ def admin_content_item():
             fields["price"] = int(fields["price"])
         except ValueError:
             fields.pop("price")
-    if "specs" in fields:
-        fields["specs"] = [line.strip() for line in fields["specs"].splitlines() if line.strip()]
+    for list_field in ["specs", "features", "variants"]:
+        if list_field in fields:
+            fields[list_field] = [line.strip() for line in fields[list_field].splitlines() if line.strip()]
     if request.form.get("action") == "edit" and index_text.isdigit() and int(index_text) < len(items):
         items[int(index_text)].update(fields)
     else:

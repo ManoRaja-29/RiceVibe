@@ -6,12 +6,11 @@
     {% if not site.hero %}<div class="hero-empty">Homepage banners can be added from the admin panel.</div>{% endif %}
     {% for slide in site.hero %}
     <article class="hero-slide {% if loop.first %}active{% endif %}">
-      <img src="{{ slide.image }}" alt="{{ slide.title }}" {% if not loop.first %}loading="lazy"{% endif %} />
+      <a class="hero-slide-link" href="/shop" aria-label="Explore Ricevibe products">
+        <img src="{{ slide.image }}" alt="{{ slide.title }}" {% if not loop.first %}loading="lazy"{% endif %} />
+      </a>
     </article>
     {% endfor %}
-    <div class="hero-dots" aria-label="Banner navigation">
-      {% for slide in site.hero %}<button class="dot {% if loop.first %}active{% endif %}" type="button" aria-label="Show banner {{ loop.index }}"></button>{% endfor %}
-    </div>
   </div>
 </section>
 
@@ -55,7 +54,7 @@
       {% for product in site.products[:4] %}
       <article class="product-card">
         <div class="product-image-wrap"><a href="/shop/{{ product.slug }}"><img src="{{ product.image }}" alt="{{ product.name }}" loading="lazy" /></a>{% if product.badge %}<span class="badge">{{ product.badge }}</span>{% endif %}</div>
-          <div class="card-copy"><h3><a href="/shop/{{ product.slug }}">{{ product.name }}</a></h3><p>{{ product.pack }}</p><div class="price-row"><strong>{% if product.price %}₹{{ product.price }}{% else %}Enquire{% endif %}</strong><a class="btn enquiry-button" href="/contact?product={{ product.name | urlencode }}">Enquire now</a></div></div>
+          <div class="card-copy"><h3><a href="/shop/{{ product.slug }}">{{ product.name }}</a></h3><p>{{ product.description }}</p><div class="product-detail-points"><span>{{ product.pack }}</span><span>{{ product.specs[0] if product.specs else 'Natural material' }}</span></div><a class="btn enquiry-button enquiry-whatsapp" href="{{ site.brand.whatsapp }}?text={{ ('Hi Ricevibe, I am interested in ' ~ product.name ~ '. Please share price, quantity options and more details.') | urlencode }}" target="_blank" rel="noreferrer">Enquire now <span aria-hidden="true">→</span></a></div>
       </article>
       {% endfor %}
     </div>
