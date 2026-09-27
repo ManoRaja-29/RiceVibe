@@ -4,7 +4,7 @@ SITE_DATA = {
         "tagline": "Biodegradable rice straws and eco-friendly essentials by JP Enterprises.",
         "location": "Bajanai Koil St, Ishwarya Nagar, Naduvankarai, Anna Nagar, Chennai, Tamil Nadu 600040",
         "phone": "093423 28664",
-        "email": "hello@ricevibe.in",
+        "email": "jpenterprises978@gmail.com",
         "whatsapp": "https://wa.me/919342328664",
         "address": "Bajanai Koil St, Ishwarya Nagar, Naduvankarai, Anna Nagar, Chennai, Tamil Nadu 600040",
         "logo_name": "ricevibe",
@@ -274,7 +274,7 @@ SITE_DATA = {
         "returns": "Please contact Ricevibe immediately for damaged, missing or incorrect shipments. Confirm with Ricevibe for return eligibility on bulk and custom orders.",
     },
     "social": {
-        "instagram": "https://www.instagram.com/",
+        "instagram": "https://www.instagram.com/ricevibe_enterprise/",
         "facebook": "https://www.facebook.com/",
         "whatsapp": "https://wa.me/919342328664",
     },
