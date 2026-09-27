@@ -10,11 +10,17 @@ from config.site_data import SITE_DATA
 
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
-app.secret_key = os.environ.get("RICEVIBE_SECRET_KEY", "development-only-change-this")
+APP_ENV = os.environ.get("RICEVIBE_ENV", "development").lower()
+SECRET_KEY = os.environ.get("RICEVIBE_SECRET_KEY")
+ADMIN_PASSWORD = os.environ.get("RICEVIBE_ADMIN_PASSWORD")
+if APP_ENV == "production" and (not SECRET_KEY or not ADMIN_PASSWORD):
+    raise RuntimeError("Production requires RICEVIBE_SECRET_KEY and RICEVIBE_ADMIN_PASSWORD.")
+app.secret_key = SECRET_KEY or "development-only-change-this"
 app.config["MAX_CONTENT_LENGTH"] = 8 * 1024 * 1024
 app.config["SESSION_COOKIE_HTTPONLY"] = True
 app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
-app.config["SESSION_COOKIE_SECURE"] = os.environ.get("RICEVIBE_SECURE_COOKIES", "0") == "1"
+app.config["SESSION_COOKIE_SECURE"] = APP_ENV == "production" or os.environ.get("RICEVIBE_SECURE_COOKIES", "0") == "1"
+app.config["PERMANENT_SESSION_LIFETIME"] = 8 * 60 * 60
 
 SITE_URL = "https://ricevibe.in"
 SOURCE_MEDIA_DIR = Path(app.root_path) / "static" / "assets" / "media"
@@ -108,6 +114,21 @@ def admin_required():
     return session.get("admin_authenticated") is True
 
 
+def current_csrf_token():
+    token = session.get("csrf_token")
+    if not token:
+        token = secrets.token_urlsafe(32)
+        session["csrf_token"] = token
+    return token
+
+
+def validate_admin_csrf():
+    expected = session.get("csrf_token", "")
+    supplied = request.form.get("csrf_token", "")
+    if not expected or not supplied or not secrets.compare_digest(expected, supplied):
+        abort(400, description="Invalid or expired admin form token. Reload the page and try again.")
+
+
 @app.context_processor
 def inject_globals():
     return {
@@ -115,6 +136,7 @@ def inject_globals():
         "current_year": datetime.now().year,
         "canonical_url": canonical_url,
         "admin_uploads": read_uploads(),
+        "csrf_token_value": current_csrf_token(),
     }
 
 
@@ -352,10 +374,12 @@ def admin_login():
     if session.get("admin_authenticated"):
         return redirect(url_for("admin_dashboard"))
     if request.method == "POST":
+        validate_admin_csrf()
         password = request.form.get("password", "")
-        expected = os.environ.get("RICEVIBE_ADMIN_PASSWORD", "ricevibe-admin-change-me")
+        expected = ADMIN_PASSWORD or "ricevibe-admin-change-me"
         if expected and secrets.compare_digest(password, expected):
             session["admin_authenticated"] = True
+            session.permanent = True
             return redirect(url_for("admin_dashboard"))
         flash("Invalid admin password.", "error")
     return render_template("admin_login.html", page_title="Admin Login | Ricevibe")
@@ -372,6 +396,7 @@ def admin_dashboard():
 def admin_content_save():
     if not admin_required():
         return redirect(url_for("admin_login"))
+    validate_admin_csrf()
     section = request.form.get("section", "").strip()
     allowed = {"brand", "hero", "categories", "products", "testimonials", "faq", "media", "gallery", "certificates"}
     if section not in allowed:
@@ -396,6 +421,7 @@ def admin_content_save():
 def admin_content_delete(section, index):
     if not admin_required():
         return redirect(url_for("admin_login"))
+    validate_admin_csrf()
     content = read_content()
     items = content.get(section)
     if isinstance(items, list) and 0 <= index < len(items):
@@ -410,6 +436,7 @@ def admin_content_delete(section, index):
 def admin_content_item():
     if not admin_required():
         return redirect(url_for("admin_login"))
+    validate_admin_csrf()
     section = request.form.get("section", "").strip()
     allowed = {"hero", "categories", "products", "testimonials", "faq", "media", "gallery", "certificates"}
     if section not in allowed:
@@ -447,6 +474,7 @@ def admin_content_item():
 def admin_settings_save():
     if not admin_required():
         return redirect(url_for("admin_login"))
+    validate_admin_csrf()
     content = read_content()
     content["brand"] = {key: request.form.get(key, "").strip() for key in ["name", "tagline", "phone", "email", "address", "whatsapp"]}
     content["social"] = {key: request.form.get(key, "").strip() for key in ["instagram", "facebook", "whatsapp"]}
@@ -460,6 +488,7 @@ def admin_settings_save():
 def admin_upload():
     if not admin_required():
         return redirect(url_for("admin_login"))
+    validate_admin_csrf()
     uploaded_files = [uploaded for uploaded in request.files.getlist("image") if uploaded.filename]
     if not uploaded_files:
         flash("Choose an image before uploading.", "error")
@@ -481,6 +510,7 @@ def admin_upload():
 def admin_delete(filename):
     if not admin_required():
         return redirect(url_for("admin_login"))
+    validate_admin_csrf()
     safe_name = secure_filename(filename)
     path = UPLOAD_DIR / safe_name
     if path.exists():

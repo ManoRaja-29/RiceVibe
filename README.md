@@ -43,4 +43,4 @@ pip install -r requirements.txt
 waitress-serve --listen=0.0.0.0:5000 wsgi:application
 ```
 
-Set `RICEVIBE_SECRET_KEY`, `RICEVIBE_ADMIN_PASSWORD`, and `RICEVIBE_SECURE_COOKIES=1` in the deployment environment.
+Set `RICEVIBE_ENV=production`, a strong unique `RICEVIBE_SECRET_KEY`, and a strong unique `RICEVIBE_ADMIN_PASSWORD` in the deployment environment. HTTPS enables secure cookies automatically; `RICEVIBE_SECURE_COOKIES=1` can also be used explicitly.
