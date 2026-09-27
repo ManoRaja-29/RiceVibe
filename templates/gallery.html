@@ -12,9 +12,9 @@
   <div class="container gallery-browser" data-gallery-browser>
     <div class="gallery-filters" role="tablist" aria-label="Gallery categories">
       <button class="gallery-filter active" type="button" data-gallery-filter="all">All</button>
-      <button class="gallery-filter" type="button" data-gallery-filter="Garnish Sticks">Garnish Sticks</button>
-      <button class="gallery-filter" type="button" data-gallery-filter="Ricevibe Products">Ricevibe Products</button>
-      <button class="gallery-filter" type="button" data-gallery-filter="Rice Straw 8mm">Rice Straw 8mm</button>
+      {% for category in site.categories %}
+      <button class="gallery-filter" type="button" data-gallery-filter="{{ category.name }}">{{ category.name }}</button>
+      {% endfor %}
     </div>
     <div class="gallery-grid">
     {% for item in site.gallery %}

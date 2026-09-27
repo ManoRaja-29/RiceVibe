@@ -167,9 +167,9 @@ def shop():
         ]
 
     if sort == "low-to-high":
-        products = sorted(products, key=lambda p: p["price"])
+        products = sorted(products, key=lambda p: p["price"] or 0)
     elif sort == "high-to-low":
-        products = sorted(products, key=lambda p: p["price"], reverse=True)
+        products = sorted(products, key=lambda p: p["price"] or 0, reverse=True)
     elif sort == "name":
         products = sorted(products, key=lambda p: p["name"].lower())
 
@@ -376,7 +376,7 @@ def admin_login():
     if request.method == "POST":
         validate_admin_csrf()
         password = request.form.get("password", "")
-        expected = ADMIN_PASSWORD or "ricevibe-admin-change-me"
+        expected = ADMIN_PASSWORD or ""
         if expected and secrets.compare_digest(password, expected):
             session["admin_authenticated"] = True
             session.permanent = True

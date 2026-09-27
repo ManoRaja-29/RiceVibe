@@ -30,7 +30,7 @@ A compact Flask-based e-commerce storefront for Ricevibe by JP Enterprises.
 
 - The storefront is enquiry-only; product buttons open the contact form or WhatsApp.
 - Admin login: `http://localhost:5000/admin`
-- Default development password: `ricevibe-admin-change-me`
+- No default admin password is configured. Set `RICEVIBE_ADMIN_PASSWORD` in the environment to enable admin login.
 - Set `RICEVIBE_ADMIN_PASSWORD` and `RICEVIBE_SECRET_KEY` environment variables before deployment.
 - Set `RICEVIBE_SECURE_COOKIES=1` when serving over HTTPS.
 - Run behind a production WSGI server such as Waitress or Gunicorn; Flask's built-in server is for local development only.
@@ -40,7 +40,7 @@ A compact Flask-based e-commerce storefront for Ricevibe by JP Enterprises.
 
 ```bash
 pip install -r requirements.txt
-waitress-serve --listen=0.0.0.0:5000 wsgi:application
+waitress-serve --listen=0.0.0.0:5000 app:app
 ```
 
 Set `RICEVIBE_ENV=production`, a strong unique `RICEVIBE_SECRET_KEY`, and a strong unique `RICEVIBE_ADMIN_PASSWORD` in the deployment environment. HTTPS enables secure cookies automatically; `RICEVIBE_SECURE_COOKIES=1` can also be used explicitly.
