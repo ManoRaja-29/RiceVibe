@@ -1,0 +1,9 @@
+{
+  "name": "ricevibe-storefront",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ricevibe Flask storefront",
+  "scripts": {
+    "start": "python -m flask --app app run --host 0.0.0.0 --port 5000"
+  }
+}

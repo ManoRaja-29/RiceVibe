@@ -12,6 +12,8 @@ A compact Flask-based e-commerce storefront for Ricevibe by JP Enterprises.
    ```
 3. Open http://localhost:5000
 
+For platforms that require a `package.json`, install the Python dependencies with `pip install -r requirements.txt`, then run `npm start` to launch the Flask app.
+
 ## Structure
 
 - `app.py` — app routes and SEO metadata
