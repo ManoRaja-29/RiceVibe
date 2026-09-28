@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero compact">
+  <div class="container">
+    <span class="eyebrow">Cart</span>
+    <h1>Your selected essentials</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container cart-layout">
+    <div class="cart-items" id="cartItems"></div>
+    <aside class="cart-summary">
+      <h2>Order summary</h2>
+      <div class="summary-row"><span>Subtotal</span><strong id="cartSubtotal">₹0</strong></div>
+      <div class="summary-row"><span>Shipping</span><strong>Calculated</strong></div>
+      <div class="summary-row total"><span>Total</span><strong id="cartTotal">₹0</strong></div>
+      <a class="btn primary" href="https://wa.me/919342328664?text=I would like to enquire about my order" target="_blank" rel="noreferrer">Checkout / Enquiry</a>
+    </aside>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,626 @@
+{
+  "brand": {
+    "name": "Ricevibe",
+    "tagline": "Biodegradable rice straws and eco-friendly essentials by JP Enterprises.",
+    "location": "Bajanai Koil St, Ishwarya Nagar, Naduvankarai, Anna Nagar, Chennai, Tamil Nadu 600040",
+    "phone": "093423 28664",
+    "email": "Ricevibeenterprises@gmail.com",
+    "whatsapp": "https://wa.me/919342328664",
+    "address": "Bajanai Koil St, Ishwarya Nagar, Naduvankarai, Anna Nagar, Chennai, Tamil Nadu 600040",
+    "logo_name": "ricevibe",
+    "logo_alt": "Ricevibe logo"
+  },
+  "nav": [
+    {
+      "label": "Home",
+      "url": "/"
+    },
+    {
+      "label": "Shop",
+      "url": "/shop"
+    },
+    {
+      "label": "About Us",
+      "url": "/about-us"
+    },
+    {
+      "label": "Gallery",
+      "url": "/gallery"
+    },
+    {
+      "label": "Brochure",
+      "url": "/brochure"
+    },
+    {
+      "label": "FAQ",
+      "url": "/faq"
+    },
+    {
+      "label": "Enquire",
+      "url": "/contact"
+    }
+  ],
+  "hero": [
+    {
+      "title": "Try the mixed pack",
+      "subtitle": "Small straw, big change",
+      "image": "/static/assets/homepage-banner-mixed-pack.png",
+      "button_text": "Shop now",
+      "button_link": "/shop"
+    },
+    {
+      "title": "A greener tomorrow",
+      "subtitle": "Sip today with colorful biodegradable rice straws",
+      "image": "/static/assets/homepage-banner-straws.png",
+      "button_text": "Shop now",
+      "button_link": "/shop"
+    }
+  ],
+  "homepage": {
+    "categories_heading": "Eco-friendly essentials for every sip",
+    "products_heading": "Popular products",
+    "why_heading": "Purpose-built for sustainable hospitality",
+    "sustainability_heading": "Made from Nature. Made for a Better Tomorrow.",
+    "bulk_heading": "Better Choices for Your Business",
+    "feedback_heading": "Good straws. Happier service."
+  },
+  "categories": [
+    {
+      "slug": "rice-straws",
+      "name": "Rice Straws",
+      "image": "/static/assets/ricevibe/rice-straw-main.jpg",
+      "description": "Food-grade rice straws for juices, smoothies, mocktails and cocktails."
+    },
+    {
+      "slug": "wooden-stirrers",
+      "name": "Bamboo Products",
+      "image": "/static/assets/product-stirrer.svg",
+      "description": "Eco-friendly, biodegradable wooden stirrers and other natural-wood essentials for cafes, restaurants and catering."
+    },
+    {
+      "slug": "garnish-picks",
+      "name": "Garnish Picks",
+      "image": "/static/assets/product-garnish.svg",
+      "description": "Colorful paper umbrella picks for drink and dessert presentation."
+    }
+  ],
+  "why_ricevibe": [
+    {
+      "title": "Biodegradable",
+      "text": "Designed to disappear naturally after use without leaving plastic behind.",
+      "icon": "leaf"
+    },
+    {
+      "title": "Food-safe",
+      "text": "Produced for food and beverage use with the right handling and packaging standards.",
+      "icon": "shield"
+    },
+    {
+      "title": "Eco-friendly",
+      "text": "Made for conscious hospitality and retail businesses reducing plastic dependency.",
+      "icon": "spark"
+    },
+    {
+      "title": "Natural",
+      "text": "Clean, earthy and premium look that aligns with natural ingredient experiences.",
+      "icon": "sun"
+    },
+    {
+      "title": "Hospitality ready",
+      "text": "Built for cafés, restaurants, bars, and event service setups requiring consistency.",
+      "icon": "cup"
+    },
+    {
+      "title": "Bulk supply",
+      "text": "Reliable formats for hotels, restaurants, caterers, retailers and distributors.",
+      "icon": "box"
+    },
+    {
+      "title": "Plant-based",
+      "text": "Made with plant-derived ingredients for a more natural everyday alternative.",
+      "icon": "leaf"
+    },
+    {
+      "title": "Plastic-free choice",
+      "text": "A practical way to reduce dependence on conventional single-use plastic straws.",
+      "icon": "spark"
+    },
+    {
+      "title": "Earth-conscious",
+      "text": "A thoughtful product choice for teams working toward cleaner, lower-impact service.",
+      "icon": "sun"
+    },
+    {
+      "title": "Naturally stylish",
+      "text": "Warm natural textures and a premium finish that complement modern beverage presentation.",
+      "icon": "cup"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Rice Straw 6.5mm X 20 cm",
+      "slug": "rice-straw-6-5mm-20cm",
+      "category": "Rice Straws",
+      "category_slug": "rice-straws",
+      "pack": "6.5 mm diameter, 20 cm length",
+      "price": null,
+      "image": "/static/assets/ricevibe/rice-straw-main.jpg",
+      "gallery": [
+        "/static/assets/ricevibe/rice-straw-main.jpg",
+        "/static/assets/ricevibe/rice-straw-gallery-1.jpg"
+      ],
+      "description": "Eco-friendly drinking straw made from natural rice and tapioca. 100% biodegradable and safe for cold drinks. A perfect alternative to plastic straws, ideal for cafes, restaurants, and bars.",
+      "specs": [
+        "Material: rice flour and tapioca starch",
+        "Length: 20 cm",
+        "Diameter: 6.5 mm",
+        "Usage: cold drinks"
+      ],
+      "usage": "Suitable for cafes, restaurants, and bars serving cold drinks.",
+      "stock": "In stock",
+      "badge": ""
+    },
+    {
+      "id": 2,
+      "name": "Rice Straw 8mm X 20 cm",
+      "slug": "rice-straw-8mm-20cm",
+      "category": "Rice Straws",
+      "category_slug": "rice-straws",
+      "pack": "8 mm diameter, 20 cm length",
+      "price": null,
+      "image": "/static/assets/ricevibe/rice-straw-gallery-2.jpg",
+      "gallery": [
+        "/static/assets/ricevibe/rice-straw-gallery-2.jpg",
+        "/static/assets/ricevibe/rice-straw-gallery-3.jpg"
+      ],
+      "description": "Eco-friendly drinking straw made from natural rice and tapioca. 100% biodegradable and safe for cold drinks. A perfect alternative to plastic straws, ideal for cafes, restaurants, and bars.",
+      "specs": [
+        "Material: rice flour and tapioca starch",
+        "Length: 20 cm",
+        "Diameter: 8 mm",
+        "Usage: cold drinks"
+      ],
+      "usage": "Suitable for cafes, restaurants, and bars serving cold drinks.",
+      "stock": "In stock",
+      "badge": ""
+    },
+    {
+      "id": 3,
+      "name": "Rice Straw 10mm X 20 cm",
+      "slug": "rice-straw-10mm-20cm",
+      "category": "Rice Straws",
+      "category_slug": "rice-straws",
+      "pack": "10 mm diameter, 20 cm length",
+      "price": null,
+      "image": "/static/assets/ricevibe/rice-straw-gallery-4.jpg",
+      "gallery": [
+        "/static/assets/ricevibe/rice-straw-gallery-4.jpg",
+        "/static/assets/ricevibe/rice-straw-gallery-5.jpg"
+      ],
+      "description": "Eco-friendly drinking straw made from natural rice and tapioca. 100% biodegradable and safe for cold drinks. A perfect alternative to plastic straws, ideal for cafes, restaurants, and bars.",
+      "specs": [
+        "Material: rice flour and tapioca starch",
+        "Length: 20 cm",
+        "Diameter: 10 mm",
+        "Usage: cold drinks"
+      ],
+      "usage": "Suitable for cafes, restaurants, and bars serving cold drinks.",
+      "stock": "In stock",
+      "badge": ""
+    },
+    {
+      "id": 4,
+      "name": "Rice Straw 13mm X 20 cm",
+      "slug": "rice-straw-13mm-20cm",
+      "category": "Rice Straws",
+      "category_slug": "rice-straws",
+      "pack": "13 mm diameter, 20 cm length",
+      "price": null,
+      "image": "/static/assets/ricevibe/rice-straw-gallery-6.jpg",
+      "gallery": [
+        "/static/assets/ricevibe/rice-straw-gallery-6.jpg",
+        "/static/assets/ricevibe/rice-straw-gallery-7.jpg"
+      ],
+      "description": "Eco-friendly drinking straw made from natural rice and tapioca. 100% biodegradable and safe for cold drinks. A perfect alternative to plastic straws, ideal for cafes, restaurants, and bars.",
+      "specs": [
+        "Material: rice flour and tapioca starch",
+        "Length: 20 cm",
+        "Diameter: 13 mm",
+        "Usage: cold drinks"
+      ],
+      "usage": "Suitable for cafes, restaurants, and bars serving cold drinks.",
+      "stock": "In stock",
+      "badge": ""
+    },
+    {
+      "id": 5,
+      "name": "Rice Straw 6.5mm X 24 cm",
+      "slug": "rice-straw-6-5mm-24cm",
+      "category": "Rice Straws",
+      "category_slug": "rice-straws",
+      "pack": "6.5 mm diameter, 24 cm length",
+      "price": null,
+      "image": "/static/assets/ricevibe/rice-straw-gallery-7.jpg",
+      "gallery": [
+        "/static/assets/ricevibe/rice-straw-gallery-7.jpg",
+        "/static/assets/ricevibe/rice-straw-gallery-8.jpg"
+      ],
+      "description": "Eco-friendly drinking straw made from natural rice and tapioca. 100% biodegradable and safe for cold drinks. A perfect alternative to plastic straws, ideal for cafes, restaurants, and bars.",
+      "specs": [
+        "Material: rice flour and tapioca starch",
+        "Length: 24 cm",
+        "Diameter: 6.5 mm",
+        "Usage: cold drinks"
+      ],
+      "usage": "Suitable for cafes, restaurants, and bars serving cold drinks.",
+      "stock": "In stock",
+      "badge": ""
+    },
+    {
+      "id": 6,
+      "name": "Rice Straw 8mm X 24 cm",
+      "slug": "rice-straw-8mm-24cm",
+      "category": "Rice Straws",
+      "category_slug": "rice-straws",
+      "pack": "8 mm diameter, 24 cm length",
+      "price": null,
+      "image": "/static/assets/ricevibe/rice-straw-gallery-8.jpg",
+      "gallery": [
+        "/static/assets/ricevibe/rice-straw-gallery-8.jpg",
+        "/static/assets/ricevibe/rice-straw-gallery-9.jpg"
+      ],
+      "description": "Eco-friendly drinking straw made from natural rice and tapioca. 100% biodegradable and safe for cold drinks. A perfect alternative to plastic straws, ideal for cafes, restaurants, and bars.",
+      "specs": [
+        "Material: rice flour and tapioca starch",
+        "Length: 24 cm",
+        "Diameter: 8 mm",
+        "Usage: cold drinks"
+      ],
+      "usage": "Suitable for cafes, restaurants, and bars serving cold drinks.",
+      "stock": "In stock",
+      "badge": ""
+    },
+    {
+      "id": 7,
+      "name": "Rice Straw 10mm X 24 cm",
+      "slug": "rice-straw-10mm-24cm",
+      "category": "Rice Straws",
+      "category_slug": "rice-straws",
+      "pack": "10 mm diameter, 24 cm length",
+      "price": null,
+      "image": "/static/assets/ricevibe/rice-straw-gallery-9.jpg",
+      "gallery": [
+        "/static/assets/ricevibe/rice-straw-gallery-9.jpg",
+        "/static/assets/ricevibe/rice-straw-gallery-10.jpg"
+      ],
+      "description": "Eco-friendly drinking straw made from natural rice and tapioca. 100% biodegradable and safe for cold drinks. A perfect alternative to plastic straws, ideal for cafes, restaurants, and bars.",
+      "specs": [
+        "Material: rice flour and tapioca starch",
+        "Length: 24 cm",
+        "Diameter: 10 mm",
+        "Usage: cold drinks"
+      ],
+      "usage": "Suitable for cafes, restaurants, and bars serving cold drinks.",
+      "stock": "In stock",
+      "badge": ""
+    },
+    {
+      "id": 8,
+      "name": "Wooden Stirrer 8\"",
+      "slug": "wooden-stirrer-8-inch",
+      "category": "Bamboo Products",
+      "category_slug": "wooden-stirrers",
+      "pack": "8 inch length",
+      "price": null,
+      "image": "/static/assets/product-stirrer.svg",
+      "gallery": [
+        "/static/assets/product-stirrer.svg",
+        "/static/assets/product-stirrer-2.svg"
+      ],
+      "description": "Eco-friendly and biodegradable items made from natural wood. Perfect for cafes, restaurants, and catering use. Our range includes wooden stirrers, cutlery, skewers, and ice cream sticks, all safe, durable, and sustainable.",
+      "specs": [
+        "Material: natural wood",
+        "Length: 8 inches",
+        "Biodegradable and disposable"
+      ],
+      "usage": "Suitable for cafes, restaurants, and catering use.",
+      "stock": "In stock",
+      "badge": ""
+    },
+    {
+      "id": 9,
+      "name": "Wooden Stirrer 6\"",
+      "slug": "wooden-stirrer-6-inch",
+      "category": "Bamboo Products",
+      "category_slug": "wooden-stirrers",
+      "pack": "6 inch length",
+      "price": null,
+      "image": "/static/assets/product-stirrer-2.svg",
+      "gallery": [
+        "/static/assets/product-stirrer-2.svg",
+        "/static/assets/product-stirrer.svg"
+      ],
+      "description": "Eco-friendly and disposable stirrer made from natural wood. Smooth, strong, and safe for mixing coffee, tea, and other drinks. Ideal for cafes, restaurants, and takeaway use.",
+      "specs": [
+        "Material: natural wood",
+        "Length: 6 inches",
+        "Smooth, strong, and disposable"
+      ],
+      "usage": "Suitable for mixing coffee, tea, and other drinks at cafes, restaurants, and takeaway counters.",
+      "stock": "In stock",
+      "badge": ""
+    },
+    {
+      "id": 10,
+      "name": "Umbrella Picks",
+      "slug": "umbrella-picks",
+      "category": "Garnish Picks",
+      "category_slug": "garnish-picks",
+      "pack": "Product details on enquiry",
+      "price": null,
+      "image": "/static/assets/product-garnish.svg",
+      "gallery": [
+        "/static/assets/product-garnish.svg",
+        "/static/assets/ricevibe/garnish-1.jpg"
+      ],
+      "description": "Colorful paper umbrellas for drink and dessert presentation.",
+      "specs": [
+        "Material: paper umbrella with pick",
+        "Colorful garnish decoration"
+      ],
+      "usage": "For drink and dessert presentation.",
+      "stock": "In stock",
+      "badge": ""
+    }
+  ],
+  "gallery": [
+    {
+      "title": "Rice Straw 6.5mm X 20 cm",
+      "category": "Rice Straws",
+      "image": "/static/assets/ricevibe/rice-straw-gallery-1.jpg"
+    },
+    {
+      "title": "Rice Straw 8mm X 20 cm",
+      "category": "Rice Straws",
+      "image": "/static/assets/ricevibe/rice-straw-gallery-2.jpg"
+    },
+    {
+      "title": "Rice Straw 10mm X 20 cm",
+      "category": "Rice Straws",
+      "image": "/static/assets/ricevibe/rice-straw-gallery-3.jpg"
+    },
+    {
+      "title": "Rice Straw 13mm X 20 cm",
+      "category": "Rice Straws",
+      "image": "/static/assets/ricevibe/rice-straw-gallery-4.jpg"
+    },
+    {
+      "title": "Rice Straw 6.5mm X 24 cm",
+      "category": "Rice Straws",
+      "image": "/static/assets/ricevibe/rice-straw-gallery-5.jpg"
+    },
+    {
+      "title": "Rice Straw 8mm X 24 cm",
+      "category": "Rice Straws",
+      "image": "/static/assets/ricevibe/rice-straw-gallery-6.jpg"
+    },
+    {
+      "title": "Rice Straw 10mm X 24 cm",
+      "category": "Rice Straws",
+      "image": "/static/assets/ricevibe/rice-straw-gallery-7.jpg"
+    },
+    {
+      "title": "Wooden Stirrer 8 inch",
+      "category": "Bamboo Products",
+      "image": "/static/assets/product-stirrer.svg"
+    },
+    {
+      "title": "Wooden Stirrer 6 inch",
+      "category": "Bamboo Products",
+      "image": "/static/assets/product-stirrer-2.svg"
+    },
+    {
+      "title": "Umbrella Picks",
+      "category": "Garnish Picks",
+      "image": "/static/assets/ricevibe/garnish-1.jpg"
+    },
+    {
+      "title": "Umbrella Picks",
+      "category": "Garnish Picks",
+      "image": "/static/assets/ricevibe/garnish-2.jpg"
+    }
+  ],
+  "media": [
+    {
+      "title": "Smaart Eats LLP unveils three brands that uphold sustainability",
+      "source": "BW Hotelier",
+      "date": "2021",
+      "excerpt": "Smaart Eats unveiled three brands under its portfolio and strengthened its sustainable food and beverage vision.",
+      "image": "/static/assets/media/4-600x600.png",
+      "fit": "contain"
+    },
+    {
+      "title": "Smaart Eats LLP launched amidst glitz, glamour and all things sustainable!",
+      "source": "Business News This Week",
+      "date": "2021",
+      "excerpt": "A look at the launch of Smaart Eats and its growing portfolio of sustainable beverage and hospitality products.",
+      "image": "/static/assets/media/2-600x600.png",
+      "fit": "contain"
+    },
+    {
+      "title": "A greener lifestyle - how our straws encourage conscious consumption habits",
+      "source": "Passionate in Marketing",
+      "date": "May 7, 2024",
+      "excerpt": "Natural rice straws help reduce reliance on non-renewable resources and plastic waste.",
+      "image": "/static/assets/media/7-1-724x1024.png",
+      "fit": "contain"
+    },
+    {
+      "title": "Rice Straws: A Small Switch for a Healthier You",
+      "source": "Hans India",
+      "date": "March 27, 2025",
+      "excerpt": "Rice straws offer a small but meaningful switch toward healthier, more sustainable daily choices.",
+      "image": "/static/assets/media/9-600x600.png",
+      "fit": "contain"
+    },
+    {
+      "title": "Top Sustainability Packaging Companies in India",
+      "source": "Renewable India",
+      "date": "2024",
+      "excerpt": "Exploring eco-friendly innovation and sustainable packaging leaders in India.",
+      "image": "/static/assets/media/1-1-724x1024.png",
+      "fit": "contain"
+    },
+    {
+      "title": "What is this straw made from rice?",
+      "source": "Social media feature",
+      "date": "April 4, 2025",
+      "excerpt": "A visual product story introducing colourful rice straws and their natural material story.",
+      "image": "/static/assets/media/10-1-724x1024.png",
+      "fit": "contain"
+    },
+    {
+      "title": "Sustainability on the Menu: How Restaurants are Embracing Rice Straws",
+      "source": "The Balcony Stories",
+      "date": "March 22, 2024",
+      "excerpt": "Restaurants are embracing rice straws as a practical step toward sustainable service.",
+      "image": "/static/assets/media/3-1-724x1024.png",
+      "fit": "contain"
+    },
+    {
+      "title": "Vishal Laddha Co-founder and CEO of Smaart Rice Straw",
+      "source": "UP18 News",
+      "date": "April 29, 2024",
+      "excerpt": "A profile of Smaart Rice Straw and its sustainability-led beverage industry journey.",
+      "image": "/static/assets/media/4-1-724x1024.png",
+      "fit": "contain"
+    },
+    {
+      "title": "Smaart Rice Straw: Revolutionizing Sustainability in the Beverage Industry",
+      "source": "Satta Express",
+      "date": "April 29, 2024",
+      "excerpt": "A closer look at natural rice straws as an alternative to traditional plastic straws.",
+      "image": "/static/assets/media/5-1-724x1024.png",
+      "fit": "contain"
+    },
+    {
+      "title": "A Greener Lifestyle",
+      "source": "Sustainability press",
+      "date": "2024",
+      "excerpt": "Conscious consumption habits supported by practical eco-friendly beverage choices.",
+      "image": "/static/assets/media/6-1-724x1024.png",
+      "fit": "contain"
+    },
+    {
+      "title": "Digital Footprint and Sustainable Choices",
+      "source": "Live Smart Journal",
+      "date": "2024",
+      "excerpt": "A sustainability feature connecting everyday choices with a cleaner future.",
+      "image": "/static/assets/media/8-1-724x1024.png",
+      "fit": "contain"
+    },
+    {
+      "title": "Smaart Eats Sustainability Feature",
+      "source": "Press coverage",
+      "date": "2024",
+      "excerpt": "Smaart Eats and its sustainable product portfolio in the press.",
+      "image": "/static/assets/media/7-600x600.png",
+      "fit": "contain"
+    },
+    {
+      "title": "Rice Straws Sustainability Coverage",
+      "source": "Media feature",
+      "date": "2024",
+      "excerpt": "Rice straws, natural materials and the move away from plastic.",
+      "image": "/static/assets/media/9-600x600.png",
+      "fit": "contain"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "The rice straws give our beverage service a premium, natural finish and our guests notice the difference.",
+      "name": "Cafe & Hospitality Partner",
+      "role": "Chennai"
+    },
+    {
+      "quote": "Ricevibe made it easy for us to move away from plastic without changing the way our team serves drinks.",
+      "name": "Restaurant Operations Team",
+      "role": "Tamil Nadu"
+    },
+    {
+      "quote": "Reliable communication, thoughtful packaging and a product that fits our sustainability goals.",
+      "name": "Eco-conscious Retailer",
+      "role": "South India"
+    }
+  ],
+  "videos": [
+    {
+      "title": "Ricevibe product overview",
+      "url": "https://www.youtube.com/embed/ScMzIvxBSi4?si=9m1U8gG0uLQ6fAaH",
+      "thumb": "/static/assets/media-3.svg"
+    },
+    {
+      "title": "Event hospitality styling",
+      "url": "https://www.youtube.com/embed/aqz-KE-bpKQ?si=9m1U8gG0uLQ6fAaH",
+      "thumb": "/static/assets/gallery-2.svg"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "JP Enterprises Certificate of Business Registration",
+      "issuer": "JP Enterprises",
+      "validity": "Ongoing",
+      "thumb": "/static/assets/cert-1.svg",
+      "file": "/static/assets/cert-1.svg"
+    },
+    {
+      "name": "Ricevibe Compliance Overview",
+      "issuer": "Ricevibe Quality Team",
+      "validity": "Annual review",
+      "thumb": "/static/assets/cert-2.svg",
+      "file": "/static/assets/cert-2.svg"
+    }
+  ],
+  "faq": [
+    {
+      "question": "What are Ricevibe rice straws made from?",
+      "answer": "Rice flour and tapioca starch."
+    },
+    {
+      "question": "Do they change drink taste?",
+      "answer": "No, they are taste-neutral."
+    },
+    {
+      "question": "Are they suitable for hospitality use?",
+      "answer": "Yes, they are designed for cafés, restaurants and event service. Confirm with Ricevibe for your exact application and packaging needs."
+    },
+    {
+      "question": "Can I order for bulk wholesale?",
+      "answer": "Yes, Ricevibe supports retail and bulk enquiries. Confirm with Ricevibe for MOQ and regional pricing."
+    },
+    {
+      "question": "How should the products be stored?",
+      "answer": "Keep in a cool, dry place away from moisture. Confirm with Ricevibe for specific storage guidance for your product line."
+    }
+  ],
+  "policies": {
+    "privacy": "We respect customer privacy and use enquiry details only for business communication and service support.",
+    "terms": "All product information is indicative and subject to stock availability. Ricevibe reserves the right to revise product and pricing details.",
+    "shipping": "Orders are fulfilled from Chennai, India. Delivery timelines vary based on order size, location and quantity. Confirm with Ricevibe for exact shipping schedules.",
+    "returns": "Please contact Ricevibe immediately for damaged, missing or incorrect shipments. Confirm with Ricevibe for return eligibility on bulk and custom orders."
+  },
+  "social": {
+    "instagram": "https://www.instagram.com/ricevibe_enterprise/",
+    "facebook": "https://www.facebook.com/",
+    "whatsapp": "https://wa.me/919342328664"
+  },
+  "contact_form_types": [
+    "Retail",
+    "Bulk",
+    "Hotel/Cafe",
+    "Distributor",
+    "Media",
+    "General"
+  ]
+}

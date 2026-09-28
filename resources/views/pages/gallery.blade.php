@@ -1,0 +1,5 @@
+@extends('layouts.app')
+@section('content')
+<section class="page-hero compact"><div class="container"><span class="eyebrow">Gallery</span><h1>Product moments and hospitality in action</h1></div></section>
+<section class="section"><div class="container gallery-browser" data-gallery-browser><div class="gallery-filters" role="tablist" aria-label="Gallery categories"><button class="gallery-filter active" type="button" data-gallery-filter="all">All</button>@foreach($site['categories'] as $category)<button class="gallery-filter" type="button" data-gallery-filter="{{ $category->name }}">{{ $category->name }}</button>@endforeach</div><div class="gallery-grid">@foreach($site['gallery'] ?? [] as $item)<figure class="gallery-item" data-gallery-category="{{ $item['category'] }}"><div class="gallery-image-frame"><img src="{{ $item['image'] }}" alt="{{ $item['title'] }}" loading="lazy" /></div><figcaption><span>{{ $item['category'] }}</span> {{ $item['title'] }}</figcaption></figure>@endforeach</div></div></section>
+@endsection

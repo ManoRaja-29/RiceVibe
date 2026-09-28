@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero compact">
+  <div class="container">
+    <span class="eyebrow">Media · Press coverage</span>
+    <h1>Ricevibe in the press</h1>
+    <p>Stories about sustainable straws, conscious consumption and the Smaart Eats journey.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="story-grid">
+      {% for item in site.media %}
+      <article class="story-card">
+        <div class="story-image-frame">
+          <img class="media-image {{ item.fit|default('cover') }}" src="{{ item.image }}" alt="{{ item.title }}" loading="lazy" />
+        </div>
+        <div class="card-copy">
+          <span class="meta">{{ item.source }} • {{ item.date }}</span>
+          <h2>{{ item.title }}</h2>
+          <p>{{ item.excerpt }}</p>
+          <a href="#" class="text-link">View article</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section alt-bg">
+  <div class="container">
+    <div class="section-heading center">
+      <span class="eyebrow">Videos</span>
+      <h2>Quick product and hospitality features</h2>
+    </div>
+    <div class="video-grid">
+      {% for video in site.videos %}
+      <div class="video-card">
+        <iframe src="{{ video.url }}" title="{{ video.title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

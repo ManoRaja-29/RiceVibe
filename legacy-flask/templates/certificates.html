@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero compact">
+  <div class="container">
+    <span class="eyebrow">Certificates</span>
+    <h1>Official credentials and quality references</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container cert-grid">
+    {% for cert in site.certificates %}
+    <article class="cert-card">
+      <img src="{{ cert.thumb }}" alt="{{ cert.name }}" loading="lazy" />
+      <div class="card-copy">
+        <h2>{{ cert.name }}</h2>
+        <p><strong>Issuer:</strong> {{ cert.issuer }}</p>
+        <p><strong>Validity:</strong> {{ cert.validity }}</p>
+        <a href="{{ cert.file }}" class="btn secondary" target="_blank" rel="noreferrer">View Cert</a>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

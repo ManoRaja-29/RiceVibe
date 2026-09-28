@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero compact">
+  <div class="container">
+    <span class="eyebrow">FAQ</span>
+    <h1>Common questions about Ricevibe products</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container faq-wrap">
+    <div class="faq-list">
+      {% for item in site.faq %}
+      <div class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span>{{ item.question }}</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>{{ item.answer }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

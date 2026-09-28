@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 150" role="img" aria-labelledby="title desc">
+  <title id="title">Ricevibe</title>
+  <desc id="desc">Ricevibe bio-degradable rice straws</desc>
+  <g fill="#073f2f">
+    <text x="8" y="91" font-family="Arial, sans-serif" font-size="86" font-weight="800" letter-spacing="-6">Ricevibe</text>
+    <text x="110" y="130" font-family="Arial, sans-serif" font-size="16" letter-spacing="3">BIO-DEGRADABLE RICE STRAWS</text>
+  </g>
+  <g fill="#42a62a">
+    <path d="M88 23C99 2 126 0 142 4c-8 24-27 35-54 31 5-5 12-10 20-15-10 3-16 4-20 3Z"/>
+    <path d="M23 129c4-24 22-36 42-36 0 22-13 38-37 43 4-7 8-13 14-18-7 5-13 8-19 11Z"/>
+  </g>
+  <path d="M90 53c-10 10-17 20-22 33" fill="none" stroke="#42a62a" stroke-width="3"/>
+</svg>

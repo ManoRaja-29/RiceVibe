@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero compact">
+  <div class="container">
+    <span class="eyebrow">Policy</span>
+    <h1>{{ page_title }}</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container policy-wrap">
+    {% if policy_page == 'privacy' %}
+      <p>{{ site.policies.privacy }}</p>
+    {% elif policy_page == 'terms' %}
+      <p>{{ site.policies.terms }}</p>
+    {% elif policy_page == 'shipping' %}
+      <p>{{ site.policies.shipping }}</p>
+    {% else %}
+      <p>{{ site.policies.returns }}</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

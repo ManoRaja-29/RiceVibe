@@ -1,48 +1,55 @@
-# Ricevibe storefront
+# RiceVibe on Laravel
 
-A compact Flask-based e-commerce storefront for Ricevibe by JP Enterprises.
+The Laravel application lives in this directory. It uses Blade views, Eloquent, MySQL in production, and SQLite for local development and tests.
 
-## Quick start
+## Local development
 
-1. Install Python 3.12+
-2. In the project folder, run:
-   ```bash
-   pip install -r requirements.txt
-   flask --app app run
-   ```
-3. Open http://localhost:5000
+Requirements: PHP 8.3+, Composer 2, and the `pdo_sqlite`, `pdo_mysql`, `mbstring`, `openssl`, `fileinfo`, and `gd` extensions.
 
-For platforms that require a `package.json`, install the Python dependencies with `pip install -r requirements.txt`, then run `npm start` to launch the Flask app.
-
-## Structure
-
-- `app.py` — app routes and SEO metadata
-- `config/site_data.py` — all editable site, product and business content
-- `templates/` — reusable pages and layout
-- `static/` — CSS, JS and SVG assets
-
-## Notes
-
-- Mobile-first design inspired by premium eco-product storefronts
-- Cart persists to localStorage
-- Menu includes a slide-down transition on mobile
-- SEO metadata and sitemap/robots are included
-
-## Enquiry and admin portal
-
-- The storefront is enquiry-only; product buttons open the contact form or WhatsApp.
-- Admin login: `http://localhost:5000/admin`
-- No default admin password is configured. Set `RICEVIBE_ADMIN_PASSWORD` in the environment to enable admin login.
-- Set `RICEVIBE_ADMIN_PASSWORD` and `RICEVIBE_SECRET_KEY` environment variables before deployment.
-- Set `RICEVIBE_SECURE_COOKIES=1` when serving over HTTPS.
-- Run behind a production WSGI server such as Waitress or Gunicorn; Flask's built-in server is for local development only.
-- Admin uploads are stored in `static/uploads` and tracked in `static/uploads/uploads.json`.
-
-## Production run
-
-```bash
-pip install -r requirements.txt
-waitress-serve --listen=0.0.0.0:5000 app:app
+```powershell
+composer install
+php artisan migrate:fresh --seed
+php artisan storage:link
+php artisan serve
 ```
 
-Set `RICEVIBE_ENV=production`, a strong unique `RICEVIBE_SECRET_KEY`, and a strong unique `RICEVIBE_ADMIN_PASSWORD` in the deployment environment. HTTPS enables secure cookies automatically; `RICEVIBE_SECURE_COOKIES=1` can also be used explicitly.
+The local `.env` is ignored by Git. Set `ADMIN_EMAIL` and `ADMIN_PASSWORD` before running the seeder if you need an admin account. There is no default admin user or password.
+
+## Hostinger deployment
+
+Create a MySQL database and database user in hPanel. Configure the domain document root to this Laravel application's `public` directory, not the project root. The hosting plan must provide PHP 8.3+, Composer 2 or an uploadable `vendor` directory, and the PHP MySQL/`pdo_mysql` extension.
+
+Set these values in the server-side `.env` file or hosting environment settings. Never commit `.env` or send these values in chat.
+
+```dotenv
+APP_NAME=Ricevibe
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://ricevibe.in
+DB_CONNECTION=mysql
+DB_HOST=<Hostinger database host>
+DB_PORT=3306
+DB_DATABASE=<database name>
+DB_USERNAME=<database user>
+DB_PASSWORD=<database password>
+FILESYSTEM_DISK=public
+ADMIN_EMAIL=<admin email>
+ADMIN_PASSWORD=<strong unique password>
+```
+
+Generate a unique `APP_KEY` on the server with `php artisan key:generate`. Then deploy dependencies and database schema:
+
+```bash
+composer install --no-dev --optimize-autoloader
+php artisan migrate --seed --force
+php artisan storage:link
+php artisan optimize
+```
+
+The admin is available at `/admin/login`. The seeder creates it only when both admin environment variables are present. Products, banners, editable site sections, and enquiries are stored in MySQL; uploaded images use Laravel's public storage disk. Keep `storage` and `bootstrap/cache` writable by PHP, and back up both the database and `storage/app/public`.
+
+## Application areas
+
+- Public storefront: home, shop, product detail, gallery, media, FAQ, policies, contact, and brochure.
+- Admin: product and banner management, JSON-backed site content editing, and enquiry inbox.
+- Database: categories, products, banners, site content, enquiries, and Laravel admin users.

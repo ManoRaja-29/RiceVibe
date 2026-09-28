@@ -1,0 +1,6 @@
+@extends('layouts.app')
+@section('content')
+<section class="page-hero compact"><div class="container"><span class="eyebrow">About Ricevibe</span><h1>Thoughtful alternatives for everyday hospitality</h1><p>{{ $site['brand']['tagline'] ?? '' }}</p></div></section>
+<section class="section"><div class="container image-story-grid"><div class="image-story-main"><img src="/static/assets/ricevibe/rice-straw-main.jpg" alt="Ricevibe biodegradable rice straws" /></div><div class="image-story-copy"><span class="eyebrow">Made for better sipping</span><h2>Natural choices for a cleaner everyday</h2><p>Ricevibe supplies biodegradable rice straws and eco-friendly beverage essentials to cafes, restaurants, bars, and retailers.</p><a class="btn primary" href="/shop">Explore the catalogue</a></div></div></section>
+<section class="section alt-bg"><div class="container feature-grid">@foreach($site['why_ricevibe'] ?? [] as $item)<article class="feature-card"><h3>{{ $item['title'] }}</h3><p>{{ $item['text'] }}</p></article>@endforeach</div></section>
+@endsection

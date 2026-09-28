@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Ricevibe logo">
+  <rect width="160" height="160" rx="32" fill="#1b4d3d"/>
+  <circle cx="78" cy="60" r="30" fill="#f0b65f"/>
+  <path d="M54 96c12-16 24-25 42-25 15 0 30 9 42 25v15H54z" fill="#f7f1e7"/>
+  <path d="M66 75c8-6 16-9 26-9 10 0 20 4 28 11" fill="none" stroke="#b2242e" stroke-width="6" stroke-linecap="round"/>
+  <path d="M58 118h62" stroke="#f7f1e7" stroke-width="7" stroke-linecap="round"/>
+</svg>
