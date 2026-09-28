@@ -19,7 +19,22 @@ SITE_DATA = {
         {"label": "FAQ", "url": "/faq"},
         {"label": "Enquire", "url": "/contact"},
     ],
-    "hero": [],
+    "hero": [
+        {
+            "title": "Try the mixed pack",
+            "subtitle": "Small straw, big change",
+            "image": "/static/assets/homepage-banner-mixed-pack.png",
+            "button_text": "Shop now",
+            "button_link": "/shop",
+        },
+        {
+            "title": "A greener tomorrow",
+            "subtitle": "Sip today with colorful biodegradable rice straws",
+            "image": "/static/assets/homepage-banner-straws.png",
+            "button_text": "Shop now",
+            "button_link": "/shop",
+        },
+    ],
     "homepage": {
         "categories_heading": "Eco-friendly essentials for every sip",
         "products_heading": "Popular products",
