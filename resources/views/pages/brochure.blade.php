@@ -19,7 +19,7 @@
 <section class="section alt-bg brochure-document">
 	<div class="container">
 		<div class="section-heading space-between"><div><span class="eyebrow">Official document</span><h2>Ricevibe company brochure</h2></div><a class="text-link" href="{{ route('brochure.download') }}">Download PDF →</a></div>
-		<div class="brochure-frame"><iframe src="/static/assets/ricevibe/jp_brochure.pdf" title="Ricevibe official brochure" loading="lazy"></iframe></div>
+		<div class="brochure-frame"><iframe src="{{ route('brochure.view') }}" title="Ricevibe official brochure" loading="lazy"></iframe></div>
 	</div>
 </section>
 @endsection
