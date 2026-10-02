@@ -27,6 +27,30 @@ class AdminController extends Controller
         ]);
     }
 
+    public function brochure(): View
+    {
+        return view('admin.brochure', [
+            'hasCustomBrochure' => Storage::disk('public')->exists('brochures/ricevibe-brochure.pdf'),
+            'brochureUrl' => route('brochure.view'),
+            'pageTitle' => 'Ricevibe Admin | Brochure',
+        ]);
+    }
+
+    public function updateBrochure(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'brochure_file' => ['required', 'file', 'mimes:pdf', 'max:20480'],
+        ]);
+
+        Storage::disk('public')->putFileAs(
+            'brochures',
+            $request->file('brochure_file'),
+            'ricevibe-brochure.pdf'
+        );
+
+        return back()->with('status', 'Brochure replaced successfully. The website now uses the new PDF.');
+    }
+
     public function storeProduct(Request $request): RedirectResponse
     {
         $data = $this->validateProduct($request);
