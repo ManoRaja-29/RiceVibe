@@ -11,8 +11,9 @@
   <meta property="og:description" content="{{ $metaDescription ?? '' }}" />
   <link rel="icon" type="image/png" href="/static/assets/ricevibe/logo-final.png" />
   <link rel="stylesheet" href="/static/css/style.css" />
+  @if(request()->is('admin*'))<link rel="stylesheet" href="/static/css/admin.css" />@endif
 </head>
-<body>
+<body class="{{ request()->is('admin*') ? 'admin-page' : '' }} {{ request()->is('admin/login') ? 'admin-login-page' : '' }}">
   <header class="site-header">
     <div class="container header-inner">
       <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-navigation"><span></span><span></span><span></span></button>

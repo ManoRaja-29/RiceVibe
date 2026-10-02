@@ -93,6 +93,11 @@ class RicevibeStorefrontTest extends TestCase
             ->assertOk()
             ->assertSee('Store management')
             ->assertSee('Rice Straw 6.5mm X 20 cm')
+            ->assertSee('admin-sidebar', false)
+            ->assertSee('data-dialog-open="product-create-dialog"', false)
+            ->assertSee('data-dialog-open="banner-create-dialog"', false)
+            ->assertSee('Site content')
+            ->assertSee('Recent enquiries')
             ->assertSee('&lt;script&gt;', false)
             ->assertDontSee('<script>', false);
     }

@@ -15,6 +15,29 @@ document.addEventListener('DOMContentLoaded', () => {
       if (form) form.hidden = !form.hidden;
     });
   });
+  document.querySelectorAll('[data-dialog-open]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const dialog = document.getElementById(button.dataset.dialogOpen);
+      if (dialog instanceof HTMLDialogElement && !dialog.open) dialog.showModal();
+    });
+  });
+  document.querySelectorAll('[data-admin-dialog]').forEach((dialog) => {
+    dialog.querySelectorAll('[data-dialog-close]').forEach((button) => {
+      button.addEventListener('click', () => dialog.close());
+    });
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  });
+  document.querySelectorAll('[data-dismiss-alert]').forEach((button) => {
+    button.addEventListener('click', () => button.closest('.admin-alert')?.remove());
+  });
+  const adminSidebar = document.querySelector('.admin-sidebar');
+  adminSidebar?.querySelectorAll('.admin-navigation a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', () => {
+      adminSidebar.querySelectorAll('.admin-navigation a').forEach((item) => item.classList.toggle('active', item === link));
+    });
+  });
   const productSearch = document.querySelector('#admin-product-search');
   const productCategory = document.querySelector('#admin-product-category');
   const filterAdminProducts = () => {
