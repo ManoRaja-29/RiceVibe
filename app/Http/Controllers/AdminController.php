@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\SiteContent;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 
@@ -31,7 +32,9 @@ class AdminController extends Controller
         $data = $this->validateProduct($request);
         $data['slug'] = $data['slug'] ?: Str::slug($data['name']);
         $data['image_path'] = $request->file('image_file')?->store('products', 'public') ?? '/static/assets/product-rice.webp';
+        $data['gallery'] = $this->storeGalleryImages($request);
         $data['sort_order'] = (Product::max('sort_order') ?? -1) + 1;
+        unset($data['gallery_files'], $data['replace_gallery']);
         Product::create($data);
 
         return back()->with('status', 'Product added.');
@@ -43,9 +46,23 @@ class AdminController extends Controller
         $data['slug'] = $data['slug'] ?: Str::slug($data['name']);
 
         if ($request->hasFile('image_file')) {
+            $this->deleteStoredImage($product->image_path);
             $data['image_path'] = $request->file('image_file')->store('products', 'public');
         }
 
+        if ($request->hasFile('gallery_files')) {
+            $newGallery = $this->storeGalleryImages($request);
+            if ($request->boolean('replace_gallery')) {
+                foreach ($product->gallery ?? [] as $image) {
+                    $this->deleteStoredImage($image);
+                }
+                $data['gallery'] = $newGallery;
+            } else {
+                $data['gallery'] = array_values(array_merge($product->gallery ?? [], $newGallery));
+            }
+        }
+
+        unset($data['gallery_files'], $data['replace_gallery']);
         $product->update($data);
 
         return back()->with('status', 'Product updated.');
@@ -53,6 +70,10 @@ class AdminController extends Controller
 
     public function destroyProduct(Product $product): RedirectResponse
     {
+        $this->deleteStoredImage($product->image_path);
+        foreach ($product->gallery ?? [] as $image) {
+            $this->deleteStoredImage($image);
+        }
         $product->delete();
 
         return back()->with('status', 'Product removed.');
@@ -75,6 +96,7 @@ class AdminController extends Controller
         $data['slug'] = Str::slug($data['title']);
 
         if ($request->hasFile('image_file')) {
+            $this->deleteStoredImage($banner->image_path);
             $data['image_path'] = $request->file('image_file')->store('banners', 'public');
         }
 
@@ -85,6 +107,7 @@ class AdminController extends Controller
 
     public function destroyBanner(Banner $banner): RedirectResponse
     {
+        $this->deleteStoredImage($banner->image_path);
         $banner->delete();
 
         return back()->with('status', 'Banner removed.');
@@ -125,6 +148,9 @@ class AdminController extends Controller
             'gallery' => ['nullable', 'array'],
             'gallery.*' => ['string', 'max:500'],
             'image_file' => ['nullable', 'image', 'max:8192'],
+            'gallery_files' => ['nullable', 'array', 'max:8'],
+            'gallery_files.*' => ['image', 'max:8192'],
+            'replace_gallery' => ['nullable', 'boolean'],
             'is_active' => ['nullable', 'boolean'],
         ]);
     }
@@ -139,5 +165,20 @@ class AdminController extends Controller
             'image_file' => [$imageRequired ? 'required' : 'nullable', 'image', 'max:8192'],
             'is_active' => ['nullable', 'boolean'],
         ]);
+    }
+
+    private function storeGalleryImages(Request $request): array
+    {
+        return collect($request->file('gallery_files', []))
+            ->map(fn ($file) => $file->store('products/gallery', 'public'))
+            ->values()
+            ->all();
+    }
+
+    private function deleteStoredImage(?string $path): void
+    {
+        if ($path && !str_starts_with($path, '/')) {
+            Storage::disk('public')->delete($path);
+        }
     }
 }
