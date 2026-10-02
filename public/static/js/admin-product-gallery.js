@@ -24,4 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
       form.appendChild(field);
     }
   });
+
+  const adminNav = document.querySelector('.admin-navigation');
+  if (adminNav && !adminNav.querySelector('a[href="/admin/brochure"]')) {
+    const brochureLink = document.createElement('a');
+    brochureLink.href = '/admin/brochure';
+    brochureLink.innerHTML = '<span>Brochure</span>';
+    const contentLink = adminNav.querySelector('a[href="#content"]');
+    if (contentLink) {
+      adminNav.insertBefore(brochureLink, contentLink);
+    } else {
+      adminNav.appendChild(brochureLink);
+    }
+  }
 });
