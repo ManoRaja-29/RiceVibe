@@ -52,7 +52,7 @@
     </div></div>
     <div class="container footer-bottom"><p>© {{ date('Y') }} Ricevibe.</p><div class="policy-links"><a href="/shipping-policy">Shipping</a><a href="/returns-policy">Return/Refund</a></div></div>
   </footer>
-  <div class="contact-float"><a class="whatsapp-float" href="{{ $site['brand']['whatsapp'] ?? '#' }}" target="_blank" rel="noreferrer" aria-label="WhatsApp enquiry">WA</a><button class="chat-float" type="button" aria-label="Open Ricevibe chat" aria-expanded="false">?</button><div class="chat-panel" hidden><strong>Ricevibe support</strong><p>How can we help?</p><a href="/contact">Product enquiry</a></div></div>
+  <div class="contact-float"><a class="whatsapp-float" href="{{ $site['brand']['whatsapp'] ?? '#' }}" target="_blank" rel="noreferrer" aria-label="WhatsApp enquiry"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5Z"/><path d="M9 8.5c.2 2.3 2 4.3 4.3 4.8l1.2-1.2 1.8.8c-.2 1.3-1.2 1.9-2.3 1.7-3.7-.7-6.3-3.3-7-7-.2-1.1.5-2.1 1.7-2.3l.8 1.8L9 8.5Z"/></svg></a><button class="chat-float" type="button" aria-label="Open Ricevibe chat" aria-expanded="false">?</button><div class="chat-panel" hidden><strong>Ricevibe support</strong><p>How can we help?</p><a href="/contact">Product enquiry</a></div></div>
   <script src="/static/js/app.js"></script>
 </body>
 </html>

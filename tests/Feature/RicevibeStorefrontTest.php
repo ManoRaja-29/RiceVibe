@@ -24,7 +24,10 @@ class RicevibeStorefrontTest extends TestCase
         $this->get('/')
             ->assertOk()
             ->assertSee('homepage-banner-mixed-pack.png')
-            ->assertSee('homepage-banner-straws.png');
+            ->assertSee('homepage-banner-straws.png')
+            ->assertSeeInOrder(['gallery-preview', 'testimonial-section'], false)
+            ->assertSee('class="whatsapp-float"', false)
+            ->assertDontSee('>WA</a>', false);
 
         $this->get('/shop?category=rice-straws')
             ->assertOk()
