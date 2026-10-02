@@ -11,7 +11,14 @@
 <section class="proof-strip"><div class="container proof-grid"><div><strong>01</strong><span>Natural materials</span></div><div><strong>02</strong><span>Chennai-based supply</span></div><div><strong>03</strong><span>Retail and bulk orders</span></div><div><strong>04</strong><span>Made for better sipping</span></div></div></section>
 <section class="section"><div class="container"><div class="section-heading center"><span class="eyebrow">Browse categories</span><h2>{{ $site['homepage']['categories_heading'] ?? 'Eco-friendly essentials' }}</h2></div><div class="category-grid reveal-on-scroll">
   @foreach($site['categories'] as $category)
-  <article class="category-card"><img src="{{ str_starts_with($category->image_path ?? '', '/') ? $category->image_path : \Illuminate\Support\Facades\Storage::url($category->image_path ?? '') }}" alt="{{ $category->name }}" loading="lazy" /><div class="card-copy"><h3>{{ $category->name }}</h3><p>{{ $category->description }}</p><a href="/shop?category={{ $category->slug }}">Explore <span aria-hidden="true">→</span></a></div></article>
+  @php
+    $categoryImage = match ($category->slug) {
+      'garnish-picks' => '/static/assets/ricevibe/garnish-1.jpg',
+      'wooden-stirrers' => '/static/assets/cat-stirrers.svg',
+      default => $category->image_path ?? '',
+    };
+  @endphp
+  <article class="category-card"><img src="{{ str_starts_with($categoryImage, '/') ? $categoryImage : \Illuminate\Support\Facades\Storage::url($categoryImage) }}" alt="{{ $category->name }}" loading="lazy" /><div class="card-copy"><h3>{{ $category->name }}</h3><p>{{ $category->description }}</p><a href="/shop?category={{ $category->slug }}">Explore <span aria-hidden="true">→</span></a></div></article>
   @endforeach
 </div></div></section>
 <section class="section"><div class="container"><div class="section-heading space-between"><div><span class="eyebrow">Featured range</span><h2>{{ $site['homepage']['products_heading'] ?? 'Popular products' }}</h2></div><a href="/shop" class="text-link">View all products →</a></div><div class="product-grid reveal-on-scroll">
