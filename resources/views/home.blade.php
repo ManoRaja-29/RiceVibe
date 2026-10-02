@@ -14,7 +14,7 @@
   @php
     $categoryImage = match ($category->slug) {
       'garnish-picks' => '/static/assets/ricevibe/garnish-1.jpg',
-      'wooden-stirrers' => '/static/assets/cat-stirrers.svg',
+      'wooden-stirrers' => '/static/assets/IMG-20260513-WA0011.jpg',
       default => $category->image_path ?? '',
     };
   @endphp
