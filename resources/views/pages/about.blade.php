@@ -1,6 +1,67 @@
 @extends('layouts.app')
 @section('content')
-<section class="page-hero compact"><div class="container"><span class="eyebrow">About Ricevibe</span><h1>Thoughtful alternatives for everyday hospitality</h1><p>{{ $site['brand']['tagline'] ?? '' }}</p></div></section>
-<section class="section"><div class="container image-story-grid"><div class="image-story-main"><img src="/static/assets/ricevibe/rice-straw-main.jpg" alt="Ricevibe biodegradable rice straws" /></div><div class="image-story-copy"><span class="eyebrow">Made for better sipping</span><h2>Natural choices for a cleaner everyday</h2><p>Ricevibe supplies biodegradable rice straws and eco-friendly beverage essentials to cafes, restaurants, bars, and retailers.</p><a class="btn primary" href="/shop">Explore the catalogue</a></div></div></section>
-<section class="section alt-bg"><div class="container feature-grid">@foreach($site['why_ricevibe'] ?? [] as $item)<article class="feature-card"><h3>{{ $item['title'] }}</h3><p>{{ $item['text'] }}</p></article>@endforeach</div></section>
+<section class="page-hero compact">
+	<div class="container">
+		<span class="eyebrow">About us</span>
+		<h1>Products That Help Your Business Grow</h1>
+	</div>
+</section>
+
+<section class="section">
+	<div class="container two-column">
+		<div>
+			<p>At Ricevibe Enterprises Private Limited, we focus on one thing above all: helping businesses find quality products they can trust.</p>
+			<p>From hospitality essentials and sustainable food-service products to Food &amp; Beverage products, premium syrups and distribution solutions, we bring carefully selected products to hotels, restaurants, cafes, retailers, distributors and businesses across India.</p>
+			<p>We work closely with our customers to understand their requirements, source the right products and build reliable long-term partnerships. We are also a distribution partner for Saksham Impex Private Limited, bringing its food and beverage products to the Indian market.</p>
+		</div>
+		<div class="info-panel">
+			<h2>Ricevibe Enterprises Private Limited</h2>
+			<p>Quality Products. Strong Partnerships. Customer Focus.</p>
+			<img class="about-brand-logo" src="/static/assets/ricevibe/logo-final.png" alt="Ricevibe Enterprises logo" />
+			<ul class="check-list">
+				<li>Local business support</li>
+				<li>Hospitality and retail focus</li>
+				<li>Natural product range</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<section class="section alt-bg">
+	<div class="container two-column">
+		<div class="info-panel"><span class="eyebrow">Our mission</span><h2>Dependable products and distribution support.</h2><p>We focus on understanding customer needs, offering quality products, building strong brand partnerships, expanding our Food &amp; Beverage portfolio and creating long-term relationships.</p></div>
+		<div class="info-panel"><span class="eyebrow">Our vision</span><h2>Building a trusted Food &amp; Beverage business from India.</h2><p>We aim to connect quality brands and products with businesses across India while continuously expanding our portfolio and distribution reach.</p></div>
+	</div>
+</section>
+
+<section class="section">
+	<div class="container">
+		<div class="section-heading center"><span class="eyebrow">Our directors</span><h2>Mr. Dillibabu &amp; Mr. Rajesh</h2><p>Ricevibe Enterprises Private Limited is led by Mr. Dillibabu and Mr. Rajesh, who work together to drive growth, partnerships, product development and distribution strategy.</p></div>
+	</div>
+</section>
+
+<section class="section alt-bg">
+	<div class="container">
+		<div class="section-heading center"><span class="eyebrow">Company credentials</span><h2>Our certificates and quality references</h2><p>These official Ricevibe and JP Enterprises references are part of our company story.</p></div>
+		<div class="cert-grid">
+			@foreach($site['certificates'] ?? [] as $cert)
+			<article class="cert-card">
+				<img src="{{ $cert['thumb'] }}" alt="{{ $cert['name'] }}" loading="lazy" />
+				<div class="card-copy"><h3>{{ $cert['name'] }}</h3><p><strong>Issuer:</strong> {{ $cert['issuer'] }}</p><p><strong>Validity:</strong> {{ $cert['validity'] }}</p><a href="{{ $cert['file'] }}" class="btn secondary" target="_blank" rel="noreferrer">View reference</a></div>
+			</article>
+			@endforeach
+		</div>
+	</div>
+</section>
+
+<section class="section alt-bg">
+	<div class="container">
+		<div class="section-heading center"><span class="eyebrow">Our promise</span><h2>Designed for everyday use, with sustainability in mind</h2></div>
+		<div class="feature-grid">
+			@foreach(array_slice($site['why_ricevibe'] ?? [], 0, 4) as $item)
+			<article class="feature-card"><div class="feature-icon icon-{{ $item['icon'] }}" aria-hidden="true"></div><h3>{{ $item['title'] }}</h3><p>{{ $item['text'] }}</p></article>
+			@endforeach
+		</div>
+	</div>
+</section>
 @endsection

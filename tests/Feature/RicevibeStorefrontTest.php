@@ -42,6 +42,20 @@ class RicevibeStorefrontTest extends TestCase
         foreach (['/about-us', '/gallery', '/media', '/faq', '/contact', '/brochure', '/certificates', '/privacy-policy'] as $path) {
             $this->get($path)->assertOk();
         }
+
+        $this->get('/about-us')
+            ->assertSee('Products That Help Your Business Grow')
+            ->assertSee('Our directors')
+            ->assertSee('Company credentials');
+
+        $this->get('/brochure')
+            ->assertSee('What we do')
+            ->assertSee('Our story')
+            ->assertSee('/static/assets/ricevibe/jp_brochure.pdf');
+
+        $this->get('/')
+            ->assertSee('class="social-icon"', false)
+            ->assertDontSee('Instagram</a><a');
     }
 
     public function test_enquiries_are_saved_and_admin_dashboard_requires_login(): void
